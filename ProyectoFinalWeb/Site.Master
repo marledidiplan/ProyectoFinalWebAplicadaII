@@ -53,7 +53,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+   
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+          <asp:Image ID="Imagen" runat="server" Height="56px" ImageAlign="TextTop" ImageUrl="~\Resources\icono-Carrito.png" Width="70px" />
         <a class="navbar-brand" href="/Default.aspx">Inicio</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -65,7 +67,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registros</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#"></a>
+                        <a class="dropdown-item" href="/Registros/rUsuarios.aspx">Usuarios</a>
+                         <a class="dropdown-item" href="/Registros/rArticulos.aspx">Articulos</a>
                         
                     </div>
                 </li>

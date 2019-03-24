@@ -13,6 +13,7 @@ namespace Entidades
         [Key]
         public int SuplidorId { get; set; }
         public string Nombre { get; set; }
+        public DateTime FechaIngreso { get; set; }
         public string Cedula { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
@@ -24,6 +25,7 @@ namespace Entidades
         {
             SuplidorId = 0;
             Nombre = string.Empty;
+            FechaIngreso = DateTime.Now;
             Cedula = string.Empty;
             Direccion = string.Empty;
             Telefono = string.Empty;

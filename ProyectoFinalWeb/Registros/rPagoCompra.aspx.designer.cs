@@ -10,7 +10,7 @@
 namespace ProyectoFinalWeb.Registros {
     
     
-    public partial class rUsuarios {
+    public partial class rPagoCompra {
         
         /// <summary>
         /// Imagen control.
@@ -22,22 +22,31 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.Image Imagen;
         
         /// <summary>
-        /// UsuarioIdTextbox control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsuarioIdTextbox;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// BuscarBtton control.
+        /// PagoIdTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BuscarBtton;
+        protected global::System.Web.UI.WebControls.TextBox PagoIdTextBox;
+        
+        /// <summary>
+        /// BuscarButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BuscarButton;
         
         /// <summary>
         /// IdRFdValidator control.
@@ -49,85 +58,13 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator IdRFdValidator;
         
         /// <summary>
-        /// NombreTextbox control.
+        /// IdREValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NombreTextbox;
-        
-        /// <summary>
-        /// NombreRFValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator NombreRFValidator;
-        
-        /// <summary>
-        /// NombreREValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator NombreREValidator;
-        
-        /// <summary>
-        /// ContrasenaTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ContrasenaTextBox;
-        
-        /// <summary>
-        /// contraRFValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator contraRFValidator;
-        
-        /// <summary>
-        /// contraCompareValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator contraCompareValidator;
-        
-        /// <summary>
-        /// CcontrasenaTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CcontrasenaTextBox;
-        
-        /// <summary>
-        /// CorfimarRFValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator CorfimarRFValidator;
-        
-        /// <summary>
-        /// ConfirmarCompareValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator ConfirmarCompareValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator IdREValidator;
         
         /// <summary>
         /// FechaTextBox control.
@@ -137,6 +74,60 @@ namespace ProyectoFinalWeb.Registros {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FechaTextBox;
+        
+        /// <summary>
+        /// SuplidorDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList SuplidorDropDownList;
+        
+        /// <summary>
+        /// Deuda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Deuda;
+        
+        /// <summary>
+        /// DeudaTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DeudaTextBox;
+        
+        /// <summary>
+        /// PagoTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PagoTextBox;
+        
+        /// <summary>
+        /// PagoRFValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PagoRFValidator;
+        
+        /// <summary>
+        /// PagoREValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator PagoREValidator;
         
         /// <summary>
         /// NuevoBtton control.
