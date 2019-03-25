@@ -19,7 +19,7 @@
                             <div class="col-md-8">
                                 <asp:Label ID="Label1" runat="server" Text="Suplidor ID:"></asp:Label>
                                 <asp:TextBox ID="SuplidorIdTextBox" class="form-control col-md-3" Text="0" type="number" runat="server"></asp:TextBox>
-                                <asp:Button ID="BuscarButton" ValidationGroup="Buscar" class="form-control btn btn-info col-md-2 btn-sm" runat="server" Text="Buscar" />
+                                <asp:Button ID="BuscarButton" ValidationGroup="Buscar" class="form-control btn btn-info col-md-2 btn-sm" runat="server" Text="Buscar" OnClick="BuscarButton_Click" />
                                 <asp:RequiredFieldValidator ID="IdRFdValidator" ValidationGroup="Buscar" ControlToValidate="SuplidorIdTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -51,12 +51,12 @@
                                 <br />
                             </div>
                         </div>
-                        <%--Descripcion--%>
+                        <%--Direccion--%>
                         <div class="form-gruop col-md-12">
-                            <label for="Nombre" class="col-md-3 control-label input-sm">Descripcion:</label>
+                            <label for="direccion" class="col-md-3 control-label input-sm">Direccion:</label>
                             <div class="col-md-8">
-                                <asp:TextBox ID="DescripcionTextBox" runat="server" class="form-control input-sm"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Guardar" ControlToValidate="DescripcionTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="DireccionTextBox" runat="server" class="form-control input-sm"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Guardar" ControlToValidate="DireccionTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                                 <br />
                             </div>
                         </div>
@@ -94,9 +94,9 @@
                         <div class="panel">
                             <div class="text-center">
                                 <div class="form-group">
-                                    <asp:Button ID="NuevoBtton" runat="server" Text="Nuevo" class="btn btn-dark btn" />
-                                    <asp:Button ID="GuardarBtton" ValidationGroup="Guardar" runat="server" Text="Guardar" class="btn btn-success btn" />
-                                    <asp:Button ID="EliminarBtton" ValidationGroup="Eliminar" runat="server" Text="Eliminar" class="btn btn-danger btn" />
+                                    <asp:Button ID="NuevoBtton" runat="server" Text="Nuevo" class="btn btn-dark btn" OnClick="NuevoBtton_Click" />
+                                    <asp:Button ID="GuardarBtton" ValidationGroup="Guardar" runat="server" Text="Guardar" class="btn btn-success btn" OnClick="GuardarBtton_Click" />
+                                    <asp:Button ID="EliminarBtton" ValidationGroup="Eliminar" runat="server" Text="Eliminar" class="btn btn-danger btn" OnClick="EliminarBtton_Click" />
                                 </div>
                             </div>
                         </div>

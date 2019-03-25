@@ -10,7 +10,7 @@
 namespace ProyectoFinalWeb.Registros {
     
     
-    public partial class rArticulos {
+    public partial class rCompra {
         
         /// <summary>
         /// Imagen control.
@@ -31,13 +31,13 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// ArticuloIdTextBox control.
+        /// CompraIdTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ArticuloIdTextBox;
+        protected global::System.Web.UI.WebControls.TextBox CompraIdTextBox;
         
         /// <summary>
         /// BuscarButton control.
@@ -67,22 +67,67 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.TextBox FechaTextBox;
         
         /// <summary>
-        /// DescripcionTextbox control.
+        /// TipoDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DescripcionTextbox;
+        protected global::System.Web.UI.WebControls.DropDownList TipoDropDownList;
         
         /// <summary>
-        /// DescripcionRFValidator control.
+        /// UsuarioDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator DescripcionRFValidator;
+        protected global::System.Web.UI.WebControls.DropDownList UsuarioDropDownList;
+        
+        /// <summary>
+        /// SuplidorsDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList SuplidorsDropDownList;
+        
+        /// <summary>
+        /// ArticuloDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ArticuloDropDownList;
+        
+        /// <summary>
+        /// CantidadTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CantidadTextBox;
+        
+        /// <summary>
+        /// CantidadRFValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator CantidadRFValidator;
+        
+        /// <summary>
+        /// CantidadREValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator CantidadREValidator;
         
         /// <summary>
         /// PrecioTextBox control.
@@ -94,111 +139,12 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.TextBox PrecioTextBox;
         
         /// <summary>
-        /// PrecioRFValidator control.
+        /// ImporteTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator PrecioRFValidator;
-        
-        /// <summary>
-        /// PrecioREValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator PrecioREValidator;
-        
-        /// <summary>
-        /// CostoTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CostoTextBox;
-        
-        /// <summary>
-        /// CostoRFValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator CostoRFValidator;
-        
-        /// <summary>
-        /// CostoREValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator CostoREValidator;
-        
-        /// <summary>
-        /// GananciaTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox GananciaTextBox;
-        
-        /// <summary>
-        /// GanaciaRFValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator GanaciaRFValidator;
-        
-        /// <summary>
-        /// GananciaREValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator GananciaREValidator1;
-        
-        /// <summary>
-        /// InventarioTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox InventarioTextBox;
-        
-        /// <summary>
-        /// NuevoBtton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NuevoBtton;
-        
-        /// <summary>
-        /// GuardarBtton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuardarBtton;
-        
-        /// <summary>
-        /// EliminarBtton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EliminarBtton;
+        protected global::System.Web.UI.WebControls.TextBox ImporteTextBox;
     }
 }

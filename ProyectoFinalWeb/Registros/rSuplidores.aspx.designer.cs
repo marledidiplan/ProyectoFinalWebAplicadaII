@@ -121,13 +121,13 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator CedulaREValidator;
         
         /// <summary>
-        /// DescripcionTextBox control.
+        /// DireccionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DescripcionTextBox;
+        protected global::System.Web.UI.WebControls.TextBox DireccionTextBox;
         
         /// <summary>
         /// RequiredFieldValidator1 control.

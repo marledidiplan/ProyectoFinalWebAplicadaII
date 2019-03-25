@@ -22,6 +22,7 @@ namespace ProyectoFinalWeb.Registros
             Usuarios usuario = new Usuarios();
             usuario.UsuarioId = Util.ToInt(UsuarioIdTextbox.Text);
             usuario.Nombre = NombreTextbox.Text;
+            usuario.NombreUsuario = NombreUsuarioTextBox.Text;
             usuario.Contrasena = ContrasenaTextBox.Text;
             usuario.ConfirmarContra = CcontrasenaTextBox.Text;
             usuario.FechaIngreso = Util.ToDate(FechaTextBox.Text);
@@ -33,6 +34,7 @@ namespace ProyectoFinalWeb.Registros
         {
             UsuarioIdTextbox.Text = "0";
             NombreTextbox.Text = "";
+            NombreUsuarioTextBox.Text = "";
             ContrasenaTextBox.Text = "";
             CcontrasenaTextBox.Text = "";
 
@@ -82,6 +84,7 @@ namespace ProyectoFinalWeb.Registros
             if (usuario != null)
             {
                 NombreTextbox.Text = usuario.ToString();
+                NombreUsuarioTextBox.Text = usuario.NombreUsuario.ToString();
                 ContrasenaTextBox.Text = usuario.Contrasena.ToString();
                 CcontrasenaTextBox.Text = usuario.ConfirmarContra.ToString();
 
