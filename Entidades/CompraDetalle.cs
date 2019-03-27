@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace Entidades
 {
     [Serializable]
-    public class CompraDetalles
+   public class CompraDetalle
     {
         [Key]
-        public int Id { get; set; }
-        public int CompraDetalleId { get; set; }
+        public int DetalleId { get; set; }
         public int ArticuloId { get; set; }
+        public int CompraId { get; set; }
         public int Cantidad { get; set; }
         public int Precio { get; set; }
         public int Importe { get; set; }
@@ -22,22 +22,19 @@ namespace Entidades
         [ForeignKey("ArticuloId")]
         public virtual Articulos Articulos { get; set; }
 
-
-
-        public CompraDetalles()
+        public CompraDetalle()
         {
-            Id = 0;
-            CompraDetalleId = 0;
+            DetalleId = 0;
             ArticuloId = 0;
             Cantidad = 0;
             Precio = 0;
             Importe = 0;
         }
 
-        public CompraDetalles(int id, int compraDetalleId, int articuloId, int cantidad, int precio, int importe)
+        public CompraDetalle(int detalleId, int articuloId, int cantidad, int precio, int importe)
         {
-            this.Id = id;
-            this.CompraDetalleId = compraDetalleId;
+
+            this.DetalleId = detalleId;
             this.ArticuloId = articuloId;
             this.Cantidad = cantidad;
             this.Precio = precio;

@@ -175,30 +175,30 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.TextBox InventarioTextBox;
         
         /// <summary>
-        /// NuevoBtton control.
+        /// NuevoBotton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NuevoBtton;
+        protected global::System.Web.UI.WebControls.Button NuevoBotton;
         
         /// <summary>
-        /// GuardarBtton control.
+        /// GuardarBotton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuardarBtton;
+        protected global::System.Web.UI.WebControls.Button GuardarBotton;
         
         /// <summary>
-        /// EliminarBtton control.
+        /// EliminarBotton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EliminarBtton;
+        protected global::System.Web.UI.WebControls.Button EliminarBotton;
     }
 }

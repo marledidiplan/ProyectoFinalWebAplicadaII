@@ -17,8 +17,8 @@ namespace ProyectoFinalWeb
 
         protected void CerrarButton_Click(object sender, EventArgs e)
         {
-            FormsAuthentication.SignOut();
-            FormsAuthentication.RedirectToLoginPage();
+            //FormsAuthentication.SignOut();
+            //FormsAuthentication.RedirectToLoginPage();
 
        //     < authentication mode = "Forms" >
  

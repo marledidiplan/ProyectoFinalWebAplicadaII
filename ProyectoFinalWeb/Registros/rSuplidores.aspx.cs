@@ -60,24 +60,30 @@ namespace ProyectoFinalWeb.Registros
             {
                 Util.ShowToastr(this.Page, " Campos Vacios", "Error", "Error");
             }
+
             supli = LlenaClase();
-            if (SuplidorIdTextBox != null)
+            if (Util.ToInt(SuplidorIdTextBox.Text) == 0)
+            {
                 paso = repo.Guardar(supli);
+                Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
+            }
             else
+            {
                 paso = repo.Modificar(supli);
+                Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+            }
+
             if (paso)
             {
-                Util.ShowToastr(this.Page, " No se pudo Guardar", "Error", "Error");
-
                 Clean();
-
-
             }
             else
             {
-                Util.ShowToastr(this.Page, " Guardado con EXITO", "Guardado", "Success");
+                Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
             }
+        
         }
+        
 
         protected void EliminarBtton_Click(object sender, EventArgs e)
         {

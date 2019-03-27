@@ -28,7 +28,7 @@
         </div>
        <%--  Boton--%>
          <div class="form-group col-md-1">
-            <asp:Button ID="BuscarBotton" runat="server" Text="Buscar" class="btn btn-dark btn"/>
+            <asp:Button ID="BuscarBotton" runat="server" Text="Buscar" class="btn btn-dark btn" OnClick="BuscarBotton_Click"/>
              <br />
         </div>
          </div>

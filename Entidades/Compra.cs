@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    [Serializable]
    public class Compra
     {
         [Key]
@@ -14,6 +15,7 @@ namespace Entidades
         public int UsuarioId { get; set; }
         public int SuplidorId { get; set; }
         public int BalanceId { get; set; }
+
 
         public DateTime Fecha { get; set; }
         public int Total { get; set; }
@@ -25,16 +27,16 @@ namespace Entidades
         public int General { get; set; }
         public string TipoDePago { get; set; }
 
-        public virtual List<CompraDetalles> Detalles { get; set; }
+        public virtual List<CompraDetalle> Detalles { get; set; }
 
         public Compra()
         {
             Total = 0;
-            this.Detalles = new List<CompraDetalles>();
+            this.Detalles = new List<CompraDetalle>();
         }
-        public void AgregarDetalle(int id, int compraDetalleId, int articuloId, int cantidad, int precio, int importe)
+        public void AgregarDetalle(int detalleId, int articuloId, int cantidad, int precio, int importe)
         {
-            this.Detalles.Add(new CompraDetalles(id, compraDetalleId, articuloId, cantidad, precio, importe));
+            this.Detalles.Add(new CompraDetalle(detalleId, articuloId, cantidad, precio, importe));
         }
     }
 }

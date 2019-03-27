@@ -27,9 +27,9 @@
         </div>
         <%--  Boton--%>
         <div class="form-group col-md-1">
-            <asp:Button ID="BuscarBotton" runat="server" Text="Buscar" class="btn btn-dark btn" />
+            <asp:Button ID="BuscarBotton" runat="server" Text="Buscar" class="btn btn-dark btn" OnClick="BuscarBotton_Click" />
             <br />
-        </div>S
+        </div>
     </div>
     <div class=" form-row justify-content-center">
         <%-- Rango de fecha--%>
@@ -47,7 +47,7 @@
             <AlternatingRowStyle BackColor="Gray" />
             <Columns>
                 <asp:HyperLinkField ControlStyle-ForeColor="SteelBlue"
-                    DataNavigateUrlFields="ArticuloId"
+                    DataNavigateUrlFields="UsuarioId"
                     DataNavigateUrlFormatString="\Registros\rUsuarios.aspx?Id={0}"
                     Text="Editar">
                     <ControlStyle ForeColor="Brown"></ControlStyle>

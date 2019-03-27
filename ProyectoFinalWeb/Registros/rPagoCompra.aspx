@@ -36,7 +36,7 @@
                         <div class="form-group colm-md-12">
                             <label for="Suplidor" class="col-md-3 input-sm">Suplidor</label>
                             <div class="col-md-8">
-                                <asp:DropDownList ID="SuplidorDropDownList" runat="server" Width="250"></asp:DropDownList>
+                                <asp:DropDownList ID="SuplidorDropDownList" runat="server" Width="250" OnSelectedIndexChanged="SuplidorDropDownList_SelectedIndexChanged"></asp:DropDownList>
                                 <br />
                             </div>
                         </div>

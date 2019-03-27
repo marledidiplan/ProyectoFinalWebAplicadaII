@@ -17,7 +17,7 @@
                         <div class="form-gruop col-md-12">
                             <label for="Id" class="col-md-3 control-label input-sm">Usuario Id:</label>
                             <div class="col-md-7">
-                                <asp:TextBox ID="UsuarioIdTextbox" runat="server" placeholder="0" class="form-control input-sm"></asp:TextBox>
+                                <asp:TextBox ID="UsuarioIdTextbox" runat="server" placeholder="0" type="number" class="form-control input-sm"></asp:TextBox>
                                 <asp:Button ID="BuscarBtton" ValidationGroup="Buscar" runat="server" Text="Buscar" class="btn btn-info btn" OnClick="BuscarBtton_Click" />
                                 <asp:RequiredFieldValidator ID="IdRFdValidator" ValidationGroup="Buscar" ControlToValidate="UsuarioIdTextbox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                             </div>

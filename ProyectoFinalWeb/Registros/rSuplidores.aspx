@@ -45,7 +45,7 @@
                         <div class="form-gruop col-md-12">
                             <label for="Cedula" class="col-md-3 control-label input-sm">Cedula:</label>
                             <div class="col-md-8">
-                                <asp:TextBox ID="CedulaTextBox" runat="server" placeholder="###-#######-#" class="form-control input-sm"></asp:TextBox>
+                                <asp:TextBox ID="CedulaTextBox" runat="server" placeholder="###-#######-#" class="form-control input-sm" MaxLength="11"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="CedulaRFValidator" ValidationGroup="Guardar" ControlToValidate="CedulaTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="CedulaREValidator" runat="server" ForeColor="DarkRed" ErrorMessage="Por favor solo numeros" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Guardar" ControlToValidate="CedulaTextBox"></asp:RegularExpressionValidator>
                                 <br />
@@ -64,7 +64,7 @@
                         <div class="form-gruop col-md-12">
                             <label for="Telefono" class="col-md-3 control-label input-sm">Telefono:</label>
                             <div class="col-md-8">
-                                <asp:TextBox ID="TelefonoTextBox" runat="server" placeholder="###-###-####" class="form-control input-sm"></asp:TextBox>
+                                <asp:TextBox ID="TelefonoTextBox" runat="server" placeholder="###-###-####" class="form-control input-sm" MaxLength="10"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="TelefonoRFValidator" ValidationGroup="Guardar" ControlToValidate="TelefonoTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="TelefonoREValidator" runat="server" ForeColor="DarkRed" ErrorMessage="Por favor solo numeros" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Guardar" ControlToValidate="TelefonoTextBox"></asp:RegularExpressionValidator>
                                 <br />

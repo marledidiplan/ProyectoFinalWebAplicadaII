@@ -70,6 +70,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/Registros/rUsuarios.aspx">Usuarios</a>
                          <a class="dropdown-item" href="/Registros/rArticulos.aspx">Articulos</a>
+                         <a class="dropdown-item" href="/Registros/rSuplidores.aspx">Suplidores</a>
+                         <a class="dropdown-item" href="/Registros/rCompra.aspx">Compra</a>
                         
                     </div>
                 </li>
@@ -83,9 +85,9 @@
               
                 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            
                 <asp:Button ID="CerrarButton" class="btn btn-outline-danger my-1 my-sm-1" type="submit" runat="server" Text="Sign off" OnClick="CerrarButton_Click" />
-            </form>
+            
         </div>
     </nav>
 

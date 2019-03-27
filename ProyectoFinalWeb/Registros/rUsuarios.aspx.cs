@@ -14,7 +14,7 @@ namespace ProyectoFinalWeb.Registros
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         private Usuarios LlenaClase()
@@ -25,7 +25,10 @@ namespace ProyectoFinalWeb.Registros
             usuario.NombreUsuario = NombreUsuarioTextBox.Text;
             usuario.Contrasena = ContrasenaTextBox.Text;
             usuario.ConfirmarContra = CcontrasenaTextBox.Text;
-            usuario.FechaIngreso = Util.ToDate(FechaTextBox.Text);
+            DateTime date;
+            bool resul = DateTime.TryParse(FechaTextBox.Text, out date);
+            if (resul == true)
+                usuario.FechaIngreso = date;
 
             return usuario;
         }
@@ -49,29 +52,33 @@ namespace ProyectoFinalWeb.Registros
         protected void GuardarBtton_Click(object sender, EventArgs e)
         {
             bool paso = false;
-            Usuarios usuario = new Usuarios();
+            Usuarios usu = new Usuarios();
             RepositorioBase<Usuarios> repo = new RepositorioBase<Usuarios>();
 
             if (IsValid == false)
             {
                 Util.ShowToastr(this.Page, " Campos Vacios", "Error", "Error");
             }
-            usuario = LlenaClase();
-            if (UsuarioIdTextbox != null)
-                paso = repo.Guardar(usuario);
-            else
-                paso = repo.Modificar(usuario);
-            if (paso)
+
+            usu = LlenaClase();
+            if (Util.ToInt(UsuarioIdTextbox.Text) == 0)
             {
-                Util.ShowToastr(this.Page, " No se pudo Guardar", "Error", "Error");
-
-                Clean();
-
-
+                paso = repo.Guardar(usu);
+                Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
             }
             else
             {
-                Util.ShowToastr(this.Page, " Guardado con EXITO", "Guardado", "Success");
+                paso = repo.Modificar(usu);
+                Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+            }
+
+            if (paso)
+            {
+                Clean();
+            }
+            else
+            {
+                Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
             }
         }
 
@@ -83,12 +90,13 @@ namespace ProyectoFinalWeb.Registros
 
             if (usuario != null)
             {
-                NombreTextbox.Text = usuario.ToString();
+                NombreTextbox.Text = usuario.Nombre;
                 NombreUsuarioTextBox.Text = usuario.NombreUsuario.ToString();
+                EmailTextBox.Text = usuario.Email;
                 ContrasenaTextBox.Text = usuario.Contrasena.ToString();
                 CcontrasenaTextBox.Text = usuario.ConfirmarContra.ToString();
 
-                FechaTextBox.Text = usuario.FechaIngreso.ToString();
+                FechaTextBox.Text = usuario.FechaIngreso.ToString("yyyy-MM-dd");
                
 
                 Util.ShowToastr(this.Page, "Su busqueda fue exitosa", "EXITO", "Info");

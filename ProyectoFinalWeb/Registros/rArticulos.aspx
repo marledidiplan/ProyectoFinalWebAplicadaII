@@ -1,9 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="rArticulos.aspx.cs" Inherits="ProyectoFinalWeb.Registros.rArticulos" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <br />
     <div class="form-row justify-content-center">
         <div class="col-sm-7">
@@ -12,7 +10,6 @@
                     <h1 style="font-size: x-large; font-family: 'Agency FB', Times, serif; font: bold;"><ins>Articulos</ins></h1>
                     <asp:Image ID="Imagen" runat="server" Height="150px" ImageAlign="Baseline" ImageUrl="~\Resources\icono-productos.jpg" Width="227px" />
                 </div>
-                <article class="card-body">
                     <div class="form-group">
 
                         <%-- <Articulo id>--%>
@@ -76,24 +73,23 @@
                             <label for="InventarioTextbox" class="col-md-3 control-label input-sm">Inventario:</label>
                             <div class="col-md-8">
                                 <asp:TextBox ID="InventarioTextBox" runat="server" ReadOnly="true" class="form-control input-sm"></asp:TextBox>
-                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Guardar" ControlToValidate="" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ForeColor="DarkRed" ErrorMessage="Por favor solo numeros" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Guardar" ControlToValidate=""></asp:RegularExpressionValidator>--%>
                                 <br />
                             </div>
                         </div>
                         <%--<Botones>--%>
-                        <div class="panel">
+                        <div class="panel-footer">
                             <div class="text-center">
                                 <div class="form-group">
-                                    <asp:Button ID="NuevoBtton" runat="server" Text="Nuevo" class="btn btn-dark btn" OnClick="NuevoBtton_Click" />
-                                    <asp:Button ID="GuardarBtton" ValidationGroup="Guardar" runat="server" Text="Guardar" class="btn btn-success btn" OnClick="GuardarBtton_Click" />
-                                    <asp:Button ID="EliminarBtton" ValidationGroup="Eliminar" runat="server" Text="Eliminar" class="btn btn-danger btn" OnClick="EliminarBtton_Click" />
+                                    <asp:Button ID="NuevoBotton" runat="server" Text="Nuevo" class="btn btn-dark btn" OnClick="NuevoBotton_Click"/>
+                                    <asp:Button ID="GuardarBotton" ValidationGroup="Guardar" runat="server" Text="Guardar" class="btn btn-success btn" OnClick="GuardarBotton_Click"  />
+                                    <asp:Button ID="EliminarBotton" ValidationGroup="Eliminar" runat="server" Text="Eliminar" class="btn btn-danger btn" OnClick="EliminarBotton_Click" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                </article>
+               
             </div>
         </div>
     </div>
+
 </asp:Content>
