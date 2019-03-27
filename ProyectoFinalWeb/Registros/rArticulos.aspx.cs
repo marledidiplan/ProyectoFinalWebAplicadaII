@@ -14,7 +14,10 @@ namespace ProyectoFinalWeb.Registros
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            {
+                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            }
         }
 
         protected void GuardarBotton_Click(object sender, EventArgs e)

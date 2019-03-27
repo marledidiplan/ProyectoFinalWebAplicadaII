@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Entidades;
+using Microsoft.Reporting.WebForms;
 using ProyectoFinalWeb.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ namespace ProyectoFinalWeb.Consulta
 {
     public partial class cArticulo : System.Web.UI.Page
     {
+        Expression<Func<Articulos, bool>> filtrar = m => true;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 DesdeTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 HastaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                LLenaReportes();
             }
         }
 
@@ -51,6 +55,27 @@ namespace ProyectoFinalWeb.Consulta
 
             ArticuloGridView.DataSource = repositorio.GetList(filtro);
             ArticuloGridView.DataBind();
+        }
+
+        public void LLenaReportes()
+        {
+           
+            ArticuloReportViewer.ProcessingMode = ProcessingMode.Local;
+            ArticuloReportViewer.Reset();
+            ArticuloReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ListadoArticulo.rdlc");
+            ArticuloReportViewer.LocalReport.DataSources.Clear();
+            ArticuloReportViewer.LocalReport.DataSources.Add(new ReportDataSource("ArticuloR", ListArti(filtrar)));
+            ArticuloReportViewer.LocalReport.Refresh();
+        }
+        public static List<Articulos> ListArti(Expression<Func<Articulos, bool>> filtro)
+        {
+            filtro = p => true;
+            RepositorioBase<Articulos> repositorio = new RepositorioBase<Articulos>();
+            List<Articulos> ArticuloList = new List<Articulos>();
+
+            ArticuloList = repositorio.GetList(filtro);
+
+            return ArticuloList;
         }
     }
 }

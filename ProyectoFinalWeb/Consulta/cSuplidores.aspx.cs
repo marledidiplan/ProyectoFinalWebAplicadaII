@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Entidades;
+using Microsoft.Reporting.WebForms;
 using ProyectoFinalWeb.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,14 @@ namespace ProyectoFinalWeb.Consulta
 {
     public partial class cSuplidores : System.Web.UI.Page
     {
+        Expression<Func<Suplidores, bool>> filtrar = m => true;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 DesdeTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 HastaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                LLenaReportes();
             }
         }
 
@@ -48,11 +51,30 @@ namespace ProyectoFinalWeb.Consulta
                 case 3:
                     filtro = p => p.Nombre.Contains(CriterioTextBox.Text) && p.FechaIngreso >= Desde && p.FechaIngreso <= Hasta;
                     break;
-                
+
             }
 
             SuplidoresGridView.DataSource = repositorio.GetList(filtro);
             SuplidoresGridView.DataBind();
+        }
+        public void LLenaReportes()
+        {
+            SuplidoresReportViewer.ProcessingMode = ProcessingMode.Local;
+            SuplidoresReportViewer.Reset();
+            SuplidoresReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ListadoSuplidores.rdlc");
+            SuplidoresReportViewer.LocalReport.DataSources.Clear();
+            SuplidoresReportViewer.LocalReport.DataSources.Add(new ReportDataSource("SuplidoresR", ListSuplidores(filtrar)));
+            SuplidoresReportViewer.LocalReport.Refresh();
+        }
+        public static List<Suplidores> ListSuplidores(Expression<Func<Suplidores, bool>> filtro)
+        {
+            filtro = p => true;
+            RepositorioBase<Suplidores> repositorio = new RepositorioBase<Suplidores>();
+            List<Suplidores> CompraList = new List<Suplidores>();
+
+            CompraList = repositorio.GetList(filtro);
+
+            return CompraList;
         }
     }
 }

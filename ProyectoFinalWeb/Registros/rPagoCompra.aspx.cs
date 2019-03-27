@@ -31,6 +31,14 @@ namespace ProyectoFinalWeb.Registros
 
             return pago;
         }
+        private void LlenaCampos(PagoCompra pagoCompra)
+        {
+            PagoTextBox.Text = pagoCompra.MontoPagar.ToString();
+            DeudaTextBox.Text = pagoCompra.Deuda.ToString();
+            SuplidorDropDownList.SelectedValue = pagoCompra.SuplidorId.ToString();
+
+
+        }
         private void LlenaComboBox()
         {
             RepositorioBase<Suplidores> sRepositorio = new RepositorioBase<Suplidores>();
@@ -38,6 +46,13 @@ namespace ProyectoFinalWeb.Registros
             SuplidorDropDownList.DataValueField = "SuplidorId";
             SuplidorDropDownList.DataTextField = "Nombre";
 
+
+        }
+        private void Clean()
+        {
+            PagoIdTextBox.Text = "0";
+            PagoTextBox.Text = "";
+            DeudaTextBox.Text = "0";
 
         }
 
@@ -67,6 +82,78 @@ namespace ProyectoFinalWeb.Registros
             int deudas = CargarDeuda(id);
             DeudaTextBox.Text = deudas.ToString();
 
+        }
+
+        protected void BuscarButton_Click(object sender, EventArgs e)
+        {
+            RepositorioBase<PagoCompra> repo = new RepositorioBase<PagoCompra>();
+            PagoCompra pago = new PagoCompra();
+            pago = repo.Buscar(Util.ToInt(PagoIdTextBox.Text));
+
+            if (pago != null)
+            {
+                //Clean();
+                LlenaCampos(pago);
+                Util.ShowToastr(this.Page, "Su busqueda fue exitosa", "EXITO", "Info");
+            }
+            else
+            {
+                Util.ShowToastr(this.Page, " No existe", "Error", "Error");
+                Clean();
+            }
+        }
+
+        protected void NuevoBtton_Click(object sender, EventArgs e)
+        {
+            Clean();
+        }
+
+        protected void GuardarBtton_Click(object sender, EventArgs e)
+        {
+            bool paso = false;
+            PagoCompra pago = new PagoCompra();
+            RepositorioBase<PagoCompra> repo = new RepositorioBase<PagoCompra>();
+
+            if (IsValid == false)
+            {
+                Util.ShowToastr(this.Page, " Campos Vacios", "Error", "Error");
+            }
+
+            pago = LlenaClase();
+            if (Util.ToInt(PagoIdTextBox.Text) == 0)
+            {
+                paso = repo.Guardar(pago);
+                Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
+            }
+            else
+            {
+                paso = repo.Modificar(pago);
+                Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+            }
+
+            if (paso)
+            {
+                Clean();
+            }
+            else
+            {
+                Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
+            }
+        }
+
+        protected void EliminarBtton_Click(object sender, EventArgs e)
+        {
+            int id = Util.ToInt(PagoIdTextBox.Text);
+            RepositorioBase<PagoCompra> repo = new RepositorioBase<PagoCompra>();
+
+            if (repo.Eliminar(id))
+            {
+                Util.ShowToastr(this.Page, " Eliminado con EXITO", "Eliminado", "Success");
+                Clean();
+            }
+            else
+
+                Util.ShowToastr(this.Page, " No se pudo eliminar", "Error", "Error");
         }
     }
 }

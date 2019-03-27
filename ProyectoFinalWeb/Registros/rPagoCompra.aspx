@@ -19,7 +19,7 @@
                             <div class="col-md-8">
                                 <asp:Label ID="Label1" runat="server" Text="Pago ID:"></asp:Label>
                                 <asp:TextBox ID="PagoIdTextBox" class="form-control col-md-3" Text="0" type="number" runat="server"></asp:TextBox>
-                                <asp:Button ID="BuscarButton" ValidationGroup="Buscar" class="form-control btn btn-info col-md-2 btn-sm" runat="server" Text="Buscar" />
+                                <asp:Button ID="BuscarButton" ValidationGroup="Buscar" class="form-control btn btn-info col-md-2 btn-sm" runat="server" Text="Buscar" OnClick="BuscarButton_Click" />
                                 <asp:RequiredFieldValidator ID="IdRFdValidator" ValidationGroup="Buscar" ControlToValidate="PagoIdTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="IdREValidator" runat="server" ErrorMessage="Solo Números" ControlToValidate="PagoIdTextBox" ValidationExpression="^[0-9]*$"></asp:RegularExpressionValidator>
                             </div>
@@ -61,9 +61,9 @@
                         <div class="panel">
                             <div class="text-center">
                                 <div class="form-group">
-                                    <asp:Button ID="NuevoBtton" runat="server" Text="Nuevo" class="btn btn-dark btn" />
-                                    <asp:Button ID="GuardarBtton" ValidationGroup="Guardar" runat="server" Text="Guardar" class="btn btn-success btn" />
-                                    <asp:Button ID="EliminarBtton" ValidationGroup="Eliminar" runat="server" Text="Eliminar" class="btn btn-danger btn" />
+                                    <asp:Button ID="NuevoBtton" runat="server" Text="Nuevo" class="btn btn-dark btn" OnClick="NuevoBtton_Click" />
+                                    <asp:Button ID="GuardarBtton" ValidationGroup="Guardar" runat="server" Text="Guardar" class="btn btn-success btn" OnClick="GuardarBtton_Click" />
+                                    <asp:Button ID="EliminarBtton" ValidationGroup="Eliminar" runat="server" Text="Eliminar" class="btn btn-danger btn" OnClick="EliminarBtton_Click" />
                                 </div>
                             </div>
                         </div>

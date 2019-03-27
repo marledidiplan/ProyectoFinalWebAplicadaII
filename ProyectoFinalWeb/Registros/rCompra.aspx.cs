@@ -15,19 +15,21 @@ namespace ProyectoFinalWeb.Registros
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RepositorioBalance repo = new RepositorioBalance();
-            int id = 1;
-            foreach (var item in RepositorioBalance.GetList(f => f.BalanceId == id))
-            {
-                BalanceTextBox.Text = item.Monto.ToString();
-            }
+            //RepositorioBalance repo = new RepositorioBalance();
+            //int id = 1;
+            //foreach (var item in RepositorioBalance.GetList(f => f.BalanceId == id))
+            //{
+            //    BalanceTextBox.Text = item.Monto.ToString();
+            //}
 
             if (!Page.IsPostBack)
             {
-                
+
                 LlenaCombo();
+                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
             }
-           
+            
         }
 
         protected void NuevoBtton_Click(object sender, EventArgs e)
@@ -38,7 +40,6 @@ namespace ProyectoFinalWeb.Registros
 
         private Compra LlenaClase(Compra compra)
         {
-           
             compra.CompraId = Util.ToInt(CompraIdTextBox.Text);
             compra.BalanceId = 1;
             DateTime date;
@@ -50,9 +51,10 @@ namespace ProyectoFinalWeb.Registros
             compra.Itbis = Convert.ToDecimal(ItbisTextBox.Text.ToString());
             compra.SuplidorId = Util.ToIntObject(SuplidorsDropDownList.SelectedValue);
             compra.UsuarioId = Convert.ToInt32(UsuarioDropDownList.SelectedValue);
-            //compra.Efectivo = Convert.ToInt32(EfectivonumericUpDown.Value);
-            //compra.Devuelta = Convert.ToInt32(DevueltanumericUpDown.Value);
-            compra.Detalles = (List<CompraDetalle>)ViewState["ArticuloDetalles"];
+            compra.Efectivo = Util.ToInt(EfectivoTextBox.Text);
+            compra.Devuelta = Util.ToInt(DevueltaTextbox.Text);
+            compra.General = Util.ToInt(EfectivoTextBox.Text) - Util.ToInt(DevueltaTextbox.Text);
+            compra.Detalles = (List<CompraDetalle>)ViewState["CompraDetalle"];
 
             return compra;
 
@@ -68,8 +70,14 @@ namespace ProyectoFinalWeb.Registros
             PrecioTextBox.Text = string.Empty;
             ImporteTextBox.Text = string.Empty;
             ViewState["CompraDetalle"] = new CompraDetalle();
+            DetalleGridView.DataSource = null;
+            DetalleGridView.DataBind();
         }
-
+        protected void BindGrid()
+        {
+            DetalleGridView.DataSource = ((Compra)ViewState["Compra"]).Detalles;
+            DetalleGridView.DataBind();
+        }
         private void LlenaCombo()
         {
             RepositorioBase<Usuarios> repoUsuario = new RepositorioBase<Usuarios>();
@@ -103,12 +111,12 @@ namespace ProyectoFinalWeb.Registros
             TotalTextBox.Text = compra.Total.ToString();
             SubTotalTextBox.Text = compra.SubTotal.ToString();
             ItbisTextBox.Text = compra.Itbis.ToString();
+            EfectivoTextBox.Text = compra.Efectivo.ToString();
+            DevueltaTextbox.Text = compra.Devuelta.ToString();
+            
 
-            Expression<Func<CompraDetalle, bool>> filtro = m => true;
-            RepositorioBase<CompraDetalle> repositorioBase = new RepositorioBase<CompraDetalle>();
-            int id = compra.CompraId;
-            filtro = c => c.CompraId == id;
-            DetalleGridView.DataSource = repositorioBase.GetList(filtro);
+            ViewState["CompraDetalle"] = compra.Detalles;
+            DetalleGridView.DataSource = (List<CompraDetalle>)ViewState["CompraDetalle"];
             DetalleGridView.DataBind();
         }
 
@@ -129,13 +137,13 @@ namespace ProyectoFinalWeb.Registros
 
         protected void GuardarBtton_Click(object sender, EventArgs e)
         {
-         
+
             bool paso = false;
             Compra compra = new Compra();
             Balance balance = new Balance();
             PagoCompra pago = new PagoCompra();
             RepositorioDetalle repo = new RepositorioDetalle();
-
+            //RepositorioBase<Compra> repositorio = new RepositorioBase<Compra>();
             if (IsValid == false)
             {
                 Util.ShowToastr(this.Page, " Campos Vacios", "Error", "Error");
@@ -151,9 +159,10 @@ namespace ProyectoFinalWeb.Registros
             }
 
             compra = LlenaClase(compra);
-            if (compra.CompraId ==0)
+            if (compra.CompraId == 0)
             {
                 paso = repo.Guardar(compra);
+                Clean();
                 Util.ShowToastr(this.Page, " Guardado con EXITO", "Guardado", "Success");
             }
             else
@@ -181,59 +190,60 @@ namespace ProyectoFinalWeb.Registros
 
             if (cmp != null)
             {
-                //Clean();
+               
                 LlenarCampos(cmp);
+                LlenaCombo();
                 Util.ShowToastr(this.Page, "Su busqueda fue exitosa", "EXITO", "Info");
             }
             else
             {
                 Util.ShowToastr(this.Page, " No existe", "Error", "Error");
                 Clean();
-
-
-
             }
         }
-        public void CalcularValores(IList<CompraDetalle> ArtiDetalles)
-        {
-            int Total = 0;
 
-
-
-            foreach (var item in ArtiDetalles)
-            {
-                Total += item.Importe;
-            }
-            int SubTotal = 0;
-            decimal Itbis = 0;
-            Itbis = Total * Convert.ToDecimal(0.18);
-            SubTotal = Convert.ToInt32(Total) - Convert.ToInt32(Itbis);
-            SubTotalTextBox.Text = SubTotal.ToString();
-            ItbisTextBox.Text = Itbis.ToString();
-            TotalTextBox.Text = Total.ToString();
-            DetalleGridView.DataSource = ArtiDetalles;
-
-        }
         private void EvaluarPrecio()
         {
 
             int id = Util.ToInt(ArticuloDropDownList.SelectedValue);
             RepositorioBase<Articulos> repositorio = new RepositorioBase<Articulos>();
             List<Articulos> arti = repositorio.GetList(c => c.ArticuloId == id);
-            //RepositorioBase<Articulos> repo = new RepositorioBase<Articulos>();
-            //List<Articulos> articulos = repo.GetList(m => m.Descripcion == ArticuloDropDownList.Text);
+
             foreach (var item in arti)
             {
                 PrecioTextBox.Text = item.Precio.ToString();
             }
         }
+        private void EvaluarDevuelta()
+        {
+
+            int efectivo;
+            int total;
+            //bool resul = int.TryParse(TotaltextBox.Text, out t);
+            //if (!resul)
+            //    return;
+
+
+            //int ef;
+            //bool result = int.TryParse(EfectivonumericUpDown.Value.ToString(), out ef);
+            //if (!resul)
+            //    return;
+
+            efectivo = Util.ToInt(TotalTextBox.Text);
+            total = Util.ToInt(EfectivoTextBox.Text);
+
+
+            DevueltaTextbox.Text = CalcularDevuelta(efectivo, total).ToString();
+
+        }
+
 
         private int CalcularImporte(int cantidad, int precio)
         {
             return cantidad * precio;
         }
 
-        private  int CalcularDevuelta(int efectivo, int total)
+        private int CalcularDevuelta(int efectivo, int total)
         {
             return efectivo - total;
         }
@@ -246,7 +256,7 @@ namespace ProyectoFinalWeb.Registros
 
             cantidad = Util.ToInt(CantidadTextBox.Text);
             precio = Util.ToInt(PrecioTextBox.Text);
-           
+
             ImporteTextBox.Text = CalcularImporte(cantidad, precio).ToString();
             //compra.Cantidad = cantidad;
             //compra.Precio = precio;
@@ -256,52 +266,67 @@ namespace ProyectoFinalWeb.Registros
         protected void TipoDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //if (TipoDropDownList.SelectedIndex == 1)
-            //{
-            //   .Enabled = false;
-            //    DevueltanumericUpDown.Enabled = false;
-            //}
-            //else
-            //{
-            //    EfectivonumericUpDown.Enabled = true;
-            //    DevueltanumericUpDown.Enabled = true;
-            //}
+            if (TipoDropDownList.SelectedIndex == 0)
+            {
+                EfectivoTextBox.Enabled = true;
+                DevueltaTextbox.Enabled = true;
+            }
+            else
+            {
+                DevueltaTextbox.Enabled = false;
+                EfectivoTextBox.Enabled = false;
+
+                DevueltaTextbox.Text = "0";
+                EfectivoTextBox.Text = "0";
+            }
         }
 
         protected void AgregarButton_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {
-                List<CompraDetalle> detalle = new List<CompraDetalle>();
+                Compra compra = new Compra();
 
-                if (DetalleGridView.DataSource != null)
+                if (DetalleGridView.Rows.Count != 0)
                 {
-                    detalle = (List<CompraDetalle>)DetalleGridView.DataSource;
+                    compra.Detalles = (List<CompraDetalle>)ViewState["CompraDetalle"];
                 }
-                else
+
+                int cantidad = Util.ToInt(CantidadTextBox.Text);
+                int precio = Util.ToInt(PrecioTextBox.Text);
+                int importe = Util.ToInt(ImporteTextBox.Text);
+                int articulo = Util.ToInt(ArticuloDropDownList.SelectedValue);
+
+                compra.Detalles.Add(new CompraDetalle(0, articulo, cantidad, precio, importe));
+                //CalcularValores(compra.Detalles);
+                int Total = 0;
+
+
+
+                foreach (var item in compra.Detalles)
                 {
-                    DateTime date = DateTime.Now.Date;
-                    int cantidad = Util.ToInt(CantidadTextBox.Text);
-                    int precio = Util.ToInt(PrecioTextBox.Text);
-                    int importe = Util.ToInt(ImporteTextBox.Text);
-
-                    CompraDetalle compraD = new CompraDetalle();
-                    detalle.Add(new CompraDetalle(0, compraD.ArticuloId, cantidad, precio, importe));
-
-                    ViewState["CompraDetalle"] = detalle;
-                    DetalleGridView.DataSource = ViewState["CompraDetalle"];
-                    DetalleGridView.DataBind();
-
-                    CalcularValores(detalle);
-
+                    Total += item.Importe;
                 }
+                int SubTotal = 0;
+                decimal Itbis = 0;
+                Itbis = Total * Convert.ToDecimal(0.18);
+                SubTotal = Convert.ToInt32(Total) - Convert.ToInt32(Itbis);
+                SubTotalTextBox.Text = SubTotal.ToString();
+                ItbisTextBox.Text = Itbis.ToString();
+                TotalTextBox.Text = Total.ToString();
+
+                ViewState["CompraDetalle"] = compra.Detalles;
+                DetalleGridView.DataSource = ViewState["CompraDetalle"];
+                DetalleGridView.DataBind();
             }
         }
+    
 
-        protected void PrecioTextBox_TextChanged(object sender, EventArgs e)
-        {
 
-        }
+        //protected void PrecioTextBox_TextChanged(object sender, EventArgs e)
+        //{
+
+        //}
 
         protected void CantidadTextBox_TextChanged(object sender, EventArgs e)
         {

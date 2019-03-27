@@ -12,12 +12,11 @@ using System.Web.UI.WebControls;
 
 namespace ProyectoFinalWeb.Consulta
 {
-    public partial class cPagoCompra : System.Web.UI.Page
+    public partial class cCompra : System.Web.UI.Page
     {
-        Expression<Func<PagoCompra, bool>> filtrar = m => true;
+        Expression<Func<Compra, bool>> filtrar = m => true;
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
                 DesdeTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
@@ -29,9 +28,8 @@ namespace ProyectoFinalWeb.Consulta
 
         protected void BuscarBotton_Click(object sender, EventArgs e)
         {
-
-            Expression<Func<PagoCompra, bool>> filtro = m => true;
-            RepositorioBase<PagoCompra> repositorio = new RepositorioBase<PagoCompra>();
+            Expression<Func<Compra, bool>> filtro = m => true;
+            RepositorioBase<Compra> repositorio = new RepositorioBase<Compra>();
             DateTime Desde = Convert.ToDateTime(DesdeTextBox.Text);
             DateTime Hasta = Convert.ToDateTime(HastaTextBox.Text);
 
@@ -45,39 +43,40 @@ namespace ProyectoFinalWeb.Consulta
                     break;
                 case 1:
                     id = Util.ToInt(CriterioTextBox.Text);
-                    filtro = c => c.PagoCompraId == id;
+                    filtro = c => c.CompraId == id;
                     break;
                 case 2:
                     filtro = c => c.Fecha >= Desde && c.Fecha <= Hasta;
                     break;
-
-
+               
             }
 
-            PagoGridView.DataSource = repositorio.GetList(filtro);
-            PagoGridView.DataBind();
+            CompraGridView.DataSource = repositorio.GetList(filtro);
+            CompraGridView.DataBind();
+
+
 
 
         }
-
         public void LLenaReportes()
         {
-            PagoReportViewer.ProcessingMode = ProcessingMode.Local;
-            PagoReportViewer.Reset();
-            PagoReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ListadoPagoCompra.rdlc");
-            PagoReportViewer.LocalReport.DataSources.Clear();
-            PagoReportViewer.LocalReport.DataSources.Add(new ReportDataSource("PagoR", ListPago(filtrar)));
-            PagoReportViewer.LocalReport.Refresh();
+
+            CompraReportViewer.ProcessingMode = ProcessingMode.Local;
+            CompraReportViewer.Reset();
+            CompraReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ListadoArticulo.rdlc");
+            CompraReportViewer.LocalReport.DataSources.Clear();
+            CompraReportViewer.LocalReport.DataSources.Add(new ReportDataSource("CompraR", ListCompra(filtrar)));
+            CompraReportViewer.LocalReport.Refresh();
         }
-        public static List<PagoCompra> ListPago(Expression<Func<PagoCompra, bool>> filtro)
+        public static List<Compra> ListCompra(Expression<Func<Compra, bool>> filtro)
         {
             filtro = p => true;
-            RepositorioBase<PagoCompra> repositorio = new RepositorioBase<PagoCompra>();
-            List<PagoCompra> pagoList = new List<PagoCompra>();
+            RepositorioBase<Compra> repositorio = new RepositorioBase<Compra>();
+            List<Compra> CompraList = new List<Compra>();
 
-            pagoList = repositorio.GetList(filtro);
+            CompraList = repositorio.GetList(filtro);
 
-            return pagoList;
+            return CompraList;
         }
     }
 }

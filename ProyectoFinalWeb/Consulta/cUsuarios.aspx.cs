@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Entidades;
+using Microsoft.Reporting.WebForms;
 using ProyectoFinalWeb.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace ProyectoFinalWeb.Consulta
 {
     public partial class cUsuarios : System.Web.UI.Page
     {
+        Expression<Func<Usuarios, bool>> filtrar = m => true;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -53,6 +55,25 @@ namespace ProyectoFinalWeb.Consulta
             UsuariosGridView.DataSource = repositorio.GetList(filtro);
             UsuariosGridView.DataBind();
 
+        }
+        public void LLenaReportes()
+        {
+            UsuariosReportViewer.ProcessingMode = ProcessingMode.Local;
+            UsuariosReportViewer.Reset();
+            UsuariosReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ListadoUsuario.rdlc");
+            UsuariosReportViewer.LocalReport.DataSources.Clear();
+            UsuariosReportViewer.LocalReport.DataSources.Add(new ReportDataSource("UsuarioR", ListUsuario(filtrar)));
+            UsuariosReportViewer.LocalReport.Refresh();
+        }
+        public static List<Usuarios> ListUsuario(Expression<Func<Usuarios, bool>> filtro)
+        {
+            filtro = p => true;
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            List<Usuarios> UsuarioList = new List<Usuarios>();
+
+            UsuarioList = repositorio.GetList(filtro);
+
+            return UsuarioList;
         }
     }
 }

@@ -14,6 +14,11 @@ namespace ProyectoFinalWeb.Registros
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+              
+            }
 
         }
 
@@ -28,9 +33,10 @@ namespace ProyectoFinalWeb.Registros
             DireccionTextBox.Text = "";
             CedulaTextBox.Text = "";
             TelefonoTextBox.Text = "";
-            CuentaTextbox.Text = "";
+            CuentaTextbox.Text = "0";
             EmailTextBox.Text = "";
         }
+
         private Suplidores LlenaClase()
         {
             Suplidores suplidor = new Suplidores();
@@ -47,6 +53,16 @@ namespace ProyectoFinalWeb.Registros
             suplidor.Email = EmailTextBox.Text;
 
             return suplidor;
+
+        }
+        private void LlenaCampos(Suplidores suplidor)
+        {
+            NombreTextbox.Text = suplidor.Nombre;
+            DireccionTextBox.Text = suplidor.Direccion;
+            CedulaTextBox.Text = suplidor.Cedula;
+            TelefonoTextBox.Text = suplidor.Telefono;
+            EmailTextBox.Text = suplidor.Email;
+            CuentaTextbox.Text = suplidor.CuentasPorPagar.ToString();
 
         }
 
@@ -109,12 +125,7 @@ namespace ProyectoFinalWeb.Registros
             if (suplidor != null)
             {
 
-                NombreTextbox.Text = suplidor.Nombre;
-                DireccionTextBox.Text = suplidor.Direccion;
-                CedulaTextBox.Text = suplidor.Cedula;
-                TelefonoTextBox.Text = suplidor.Telefono;
-                EmailTextBox.Text = suplidor.Email;
-                CuentaTextbox.Text = suplidor.CuentasPorPagar.ToString();
+                LlenaCampos(suplidor);
 
                 Util.ShowToastr(this.Page, "Su busqueda fue exitosa", "EXITO", "Info");
             }

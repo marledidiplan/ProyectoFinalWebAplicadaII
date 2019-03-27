@@ -17,22 +17,8 @@ namespace ProyectoFinalWeb
 
         protected void CerrarButton_Click(object sender, EventArgs e)
         {
-            //FormsAuthentication.SignOut();
-            //FormsAuthentication.RedirectToLoginPage();
-
-       //     < authentication mode = "Forms" >
- 
-       //< forms loginUrl = "Login.aspx" name = "ASPXFORMSATHU" >
-    
-       //   </ forms >
-    
-       // </ authentication >
-    
-       // < authorization >
-    
-       //   < deny users = "?" />
-     
-       //  </ authorization >
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
 
         protected void CerrarSButton_Click(object sender, EventArgs e)

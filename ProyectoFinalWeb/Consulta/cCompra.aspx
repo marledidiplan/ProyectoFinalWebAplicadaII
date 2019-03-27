@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cArticulo.aspx.cs" Inherits="ProyectoFinalWeb.Consulta.cArticulo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cCompra.aspx.cs" Inherits="ProyectoFinalWeb.Consulta.cCompra" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
+     <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <br />
     <div class="text-center">
@@ -14,12 +15,16 @@
             <asp:Label ID="Filtro" runat="server" Text="Filtro"></asp:Label>
             <asp:DropDownList ID="FiltroDropDownList" Class="form-control" runat="server">
                 <asp:ListItem>Todo</asp:ListItem>
-                <asp:ListItem>ArticuloId</asp:ListItem>
-                <asp:ListItem>Descripcion</asp:ListItem>
-                <asp:ListItem>Precio</asp:ListItem>
-                <asp:ListItem>Costo</asp:ListItem>
-                <asp:ListItem>Ganancia</asp:ListItem>
-                <asp:ListItem>Inventario</asp:ListItem>
+                <asp:ListItem>CompraId</asp:ListItem>
+                <asp:ListItem>UsuarioId</asp:ListItem>
+                <asp:ListItem>SuplidorId</asp:ListItem>
+                <asp:ListItem>Balanceid</asp:ListItem>
+                <asp:ListItem>Total</asp:ListItem>
+                <asp:ListItem>SubTotal</asp:ListItem>
+                <asp:ListItem>Itbis</asp:ListItem>
+                <asp:ListItem>Efectivo</asp:ListItem>
+                <asp:ListItem>Devuelta</asp:ListItem>
+                <asp:ListItem>TipoDePago</asp:ListItem>
             </asp:DropDownList>
         </div>
        <%--  Criterio--%>
@@ -45,12 +50,12 @@
         </div>
          </div>
      <div class=" form-row justify-content-center">
-         <asp:GridView ID="ArticuloGridView" runat="server" class="table table-condensed table-bordered table-responsive" CellPadding="4" ForeColor="#333333" GridLines="None">
+         <asp:GridView ID="CompraGridView" runat="server" class="table table-condensed table-bordered table-responsive" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="Gray" />
                 <Columns>
                     <asp:HyperLinkField ControlStyle-ForeColor="SteelBlue"
-                        DataNavigateUrlFields="ArticuloId"
-                        DataNavigateUrlFormatString="\Registros\rArticulo.aspx?Id={0}"
+                        DataNavigateUrlFields="CompraId"
+                        DataNavigateUrlFormatString="\Registros\rCompra.aspx?Id={0}"
                         Text="Editar">
                         <ControlStyle ForeColor="Brown"></ControlStyle>
                     </asp:HyperLinkField>
@@ -59,7 +64,7 @@
                 <HeaderStyle BackColor="Window" Font-Bold="true" ForeColor="blue" />
                 <RowStyle BackColor="PaleGreen" />
             </asp:GridView>
-
+           <%--Boton Imprimir--%>
           <div class="form-group" style="display: inline-block">
                         <button type="button" class="btn btn-info mt-4" data-toggle="modal" data-target=".bd-example-modal-lg">Imprimir</button>
                     </div>
@@ -69,14 +74,14 @@
                 <div class="modal-dialog modal-sm" style="max-width: 600px!important; min-width: 300px!important">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Reporte Articulo</h5>
+                            <h5 class="modal-title" id="ModalLabel">Reporte Compra</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <%--Viewer--%>
-                            <rsweb:reportviewer ID="ArticuloReportViewer" runat="server" ProcessingMode="Remote" Height="400px" Width="500px">
+                            <rsweb:reportviewer ID="CompraReportViewer" runat="server" ProcessingMode="Remote" Height="400px" Width="500px">
                                 <ServerReport ReportPath="" ReportServerUrl="" />
                             </rsweb:reportviewer>
                         </div>

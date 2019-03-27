@@ -22,20 +22,23 @@ namespace Entidades
         [ForeignKey("ArticuloId")]
         public virtual Articulos Articulos { get; set; }
 
+
         public CompraDetalle()
         {
             DetalleId = 0;
             ArticuloId = 0;
+
             Cantidad = 0;
             Precio = 0;
             Importe = 0;
         }
 
-        public CompraDetalle(int detalleId, int articuloId, int cantidad, int precio, int importe)
+        public CompraDetalle(int detalleId, int articuloId,  int cantidad, int precio, int importe)
         {
 
             this.DetalleId = detalleId;
             this.ArticuloId = articuloId;
+            
             this.Cantidad = cantidad;
             this.Precio = precio;
             this.Importe = importe;

@@ -108,7 +108,7 @@
                     <div class="form-gruop col-md-2">
                         <label for="Precio" class="col-md-10 control-label input-sm">Precio:</label>
                         <div class="col-md-12">
-                            <asp:TextBox ID="PrecioTextBox" runat="server" class="form-control input-sm" AutoPostBack="true" ReadOnly="True" OnTextChanged="PrecioTextBox_TextChanged"></asp:TextBox>
+                            <asp:TextBox ID="PrecioTextBox" runat="server" class="form-control input-sm" AutoPostBack="true" ReadOnly="True"></asp:TextBox>
                         </div>
                     </div>
                     <%--Importe--%>
@@ -168,6 +168,26 @@
                         <asp:TextBox ID="TotalTextBox" runat="server" class="form-control input-sm" ReadOnly="True"></asp:TextBox>
                     </div>
                     </div>
+                      <%-- Efectivo--%>
+                    <div class="form-gruop col-md-2">
+                        <label for="EfectivoTextbox" class="col-md-10 control-label input-sm">Efectivo:</label>
+                        <div class="col-md-12">
+                            <asp:TextBox ID="EfectivoTextBox" runat="server" class="form-control input-sm" AutoPostBack="true" type="number"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Guardar" ControlToValidate="EfectivoTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ForeColor="DarkRed" ErrorMessage="Por favor solo numeros" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Guardar" ControlToValidate="EfectivoTextBox"></asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                   <%-- Devuelta--%>
+                     <div class="form-gruop col-md-2">
+                        <label for="DevueltaTextbox" class="col-md-10 control-label input-sm">Devuelta:</label>
+                        <div class="col-md-12">
+                            <asp:TextBox ID="DevueltaTextbox" runat="server" class="form-control input-sm" AutoPostBack="true" type="number" ></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="Guardar" ControlToValidate="DevueltaTextbox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="DarkRed" ErrorMessage="Por favor solo numeros" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Guardar" ControlToValidate="DevueltaTextbox"></asp:RegularExpressionValidator>
+                            <br />
+                        </div>
+                    </div>
+
                     </div>
                   
                     </div>

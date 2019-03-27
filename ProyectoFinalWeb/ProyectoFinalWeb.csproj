@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Consulta\cArticulo.aspx" />
+    <Content Include="Consulta\cCompra.aspx" />
     <Content Include="Consulta\cPagoCompra.aspx" />
     <Content Include="Consulta\cSuplidores.aspx" />
     <Content Include="Consulta\cUsuarios.aspx" />
@@ -121,6 +122,39 @@
     <Content Include="FinalWebDataSet.xsc">
       <DependentUpon>FinalWebDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="ArticuloDataSet.xsc">
+      <DependentUpon>ArticuloDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="ArticuloDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ArticuloDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="ArticuloDataSet.xss">
+      <DependentUpon>ArticuloDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="CompraDataSet.xsc">
+      <DependentUpon>CompraDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="CompraDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CompraDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="CompraDataSet.xss">
+      <DependentUpon>CompraDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="ComprasDataSet.xsc">
+      <DependentUpon>ComprasDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="ComprasDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ComprasDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="ComprasDataSet.xss">
+      <DependentUpon>ComprasDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="FinalWebDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>FinalWebDataSet.Designer.cs</LastGenOutput>
@@ -129,12 +163,24 @@
     <Content Include="FinalWebDataSet.xss">
       <DependentUpon>FinalWebDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="PagoDataSet.xsc">
+      <DependentUpon>PagoDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="PagoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PagoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="PagoDataSet.xss">
+      <DependentUpon>PagoDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.6.3-vsdoc.js" />
     <Content Include="Resources\Iconos-prove.png" />
+    <Content Include="Resources\Logo-L&amp;M.png" />
     <Content Include="Resources\pago.png" />
     <Content Include="Scripts\jquery-1.6.3.js" />
     <Content Include="Scripts\jquery-1.6.3.min.js" />
@@ -158,12 +204,34 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticuloDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArticuloDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CompraDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompraDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ComprasDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComprasDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Consulta\cArticulo.aspx.cs">
       <DependentUpon>cArticulo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Consulta\cArticulo.aspx.designer.cs">
       <DependentUpon>cArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consulta\cCompra.aspx.cs">
+      <DependentUpon>cCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consulta\cCompra.aspx.designer.cs">
+      <DependentUpon>cCompra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Consulta\cPagoCompra.aspx.cs">
       <DependentUpon>cPagoCompra.aspx</DependentUpon>
@@ -207,6 +275,11 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagoDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -257,11 +330,43 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="SuplidoresDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuplidoresDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsuarioDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Utilidades\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Site.Master" />
+    <Content Include="SuplidoresDataSet.xsc">
+      <DependentUpon>SuplidoresDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="SuplidoresDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SuplidoresDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SuplidoresDataSet.xss">
+      <DependentUpon>SuplidoresDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="UsuarioDataSet.xsc">
+      <DependentUpon>UsuarioDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="UsuarioDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UsuarioDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="UsuarioDataSet.xss">
+      <DependentUpon>UsuarioDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -285,6 +390,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reportes\ListadoArticulo.rdlc" />
+    <EmbeddedResource Include="Reportes\ListadoCompra.rdlc" />
+    <EmbeddedResource Include="Reportes\ListadoPagoCompra.rdlc" />
+    <EmbeddedResource Include="Reportes\ListadoSuplidores.rdlc" />
+    <EmbeddedResource Include="Reportes\ListadoUsuario.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

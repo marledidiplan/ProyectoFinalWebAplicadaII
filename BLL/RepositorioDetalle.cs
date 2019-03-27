@@ -21,6 +21,8 @@ namespace BLL
 
                 if (contexto.compras.Add(compra) != null)
                 {
+
+
                     foreach (var item in compra.Detalles)
                     {
                         contexto.articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
@@ -38,8 +40,8 @@ namespace BLL
                         balance.Monto -= compra.BalanceC;
 
                     }
-                    //contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
-                    //contexto.balances.Find(compra.BalanceId).Monto -= compra.BalanceC;
+                    contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
+                    contexto.balances.Find(compra.BalanceId).Monto -= compra.BalanceC;
 
 
                     paso = contexto.SaveChanges() > 0;

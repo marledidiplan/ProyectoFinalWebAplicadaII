@@ -15,8 +15,6 @@ namespace Entidades
         public int UsuarioId { get; set; }
         public int SuplidorId { get; set; }
         public int BalanceId { get; set; }
-
-
         public DateTime Fecha { get; set; }
         public int Total { get; set; }
         public int SubTotal { get; set; }
@@ -26,15 +24,15 @@ namespace Entidades
         public int Devuelta { get; set; }
         public int General { get; set; }
         public string TipoDePago { get; set; }
-
         public virtual List<CompraDetalle> Detalles { get; set; }
 
         public Compra()
         {
             Total = 0;
-            this.Detalles = new List<CompraDetalle>();
+            Detalles = new List<CompraDetalle>();
         }
-        public void AgregarDetalle(int detalleId, int articuloId, int cantidad, int precio, int importe)
+
+        public void AgregarDetalle(int detalleId, int articuloId,  int cantidad, int precio, int importe)
         {
             this.Detalles.Add(new CompraDetalle(detalleId, articuloId, cantidad, precio, importe));
         }

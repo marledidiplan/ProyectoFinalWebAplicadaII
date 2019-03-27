@@ -10,7 +10,7 @@
 namespace ProyectoFinalWeb.Consulta {
     
     
-    public partial class cArticulo {
+    public partial class cCompra {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -76,21 +76,21 @@ namespace ProyectoFinalWeb.Consulta {
         protected global::System.Web.UI.WebControls.TextBox HastaTextBox;
         
         /// <summary>
-        /// ArticuloGridView control.
+        /// CompraGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ArticuloGridView;
+        protected global::System.Web.UI.WebControls.GridView CompraGridView;
         
         /// <summary>
-        /// ArticuloReportViewer control.
+        /// CompraReportViewer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer ArticuloReportViewer;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer CompraReportViewer;
     }
 }
