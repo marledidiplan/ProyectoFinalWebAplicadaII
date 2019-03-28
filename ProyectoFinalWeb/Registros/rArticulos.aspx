@@ -52,7 +52,7 @@
                         <div class="form-gruop col-md-12">
                             <label for="CostoTextbox" class="col-md-3 control-label input-sm">Costo:</label>
                             <div class="col-md-8">
-                                <asp:TextBox ID="CostoTextBox" runat="server" class="form-control input-sm"></asp:TextBox>
+                                <asp:TextBox ID="CostoTextBox" runat="server" class="form-control input-sm" AutoPostBack="true"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="CostoRFValidator" ValidationGroup="Guardar" ControlToValidate="CostoTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="CostoREValidator" runat="server" ForeColor="DarkRed" ErrorMessage="Por favor solo numeros" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Guardar" ControlToValidate="CostoTextBox"></asp:RegularExpressionValidator>
                                 <br />
@@ -62,7 +62,7 @@
                         <div class="form-gruop col-md-12">
                             <label for="GananciaTextbox" class="col-md-3 control-label input-sm">Ganancia:</label>
                             <div class="col-md-8">
-                                <asp:TextBox ID="GananciaTextBox" runat="server" class="form-control input-sm"></asp:TextBox>
+                                <asp:TextBox ID="GananciaTextBox" runat="server" class="form-control input-sm  " OnTextChanged="GananciaTextBox_TextChanged"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="GanaciaRFValidator" ValidationGroup="Guardar" ControlToValidate="GananciaTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="GananciaREValidator1" runat="server" ForeColor="DarkRed" ErrorMessage="Por favor solo numeros" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Guardar" ControlToValidate="GananciaTextBox"></asp:RegularExpressionValidator>
                                 <br />

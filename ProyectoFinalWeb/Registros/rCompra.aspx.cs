@@ -162,8 +162,9 @@ namespace ProyectoFinalWeb.Registros
             if (compra.CompraId == 0)
             {
                 paso = repo.Guardar(compra);
-                Clean();
+               
                 Util.ShowToastr(this.Page, " Guardado con EXITO", "Guardado", "Success");
+                Clean();
             }
             else
             {

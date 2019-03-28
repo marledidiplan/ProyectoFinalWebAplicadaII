@@ -36,11 +36,13 @@ namespace ProyectoFinalWeb.Registros
             {
                 paso = repo.Guardar(arti);
                 Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
+                Clean();
             }
             else
             {
                 paso = repo.Modificar(arti);
                 Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+                Clean();
             }
 
             if (paso)
@@ -77,6 +79,7 @@ namespace ProyectoFinalWeb.Registros
         }
         private int CalcularGanancia(int costo, int precio)
         {
+
             int resultado;
             resultado = precio - costo;
             resultado = resultado / costo;
@@ -131,17 +134,17 @@ namespace ProyectoFinalWeb.Registros
 
         protected void PrecioTextBox_TextChanged(object sender, EventArgs e)
         {
-            int cos;
-            bool resul = int.TryParse(CostoTextBox.Text, out cos);
-            if (!resul)
-                return;
+            int cos = Util.ToInt(CostoTextBox.Text);
 
-            int pre;
-            bool resu = int.TryParse(PrecioTextBox.Text, out pre);
-            if (!resul)
-                return;
+            int pre = Util.ToInt(PrecioTextBox.Text);
+           
 
             GananciaTextBox.Text = CalcularGanancia(cos, pre).ToString();
+        }
+
+        protected void GananciaTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

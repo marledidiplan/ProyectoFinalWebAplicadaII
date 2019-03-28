@@ -95,6 +95,8 @@ namespace ProyectoFinalWeb.Registros
                 EmailTextBox.Text = usuario.Email;
                 ContrasenaTextBox.Text = usuario.Contrasena.ToString();
                 CcontrasenaTextBox.Text = usuario.ConfirmarContra.ToString();
+                TelefonoTextBox.Text = usuario.Telefono;
+                CedulaTextBox.Text = usuario.Cedula;
 
                 FechaTextBox.Text = usuario.FechaIngreso.ToString("yyyy-MM-dd");
                

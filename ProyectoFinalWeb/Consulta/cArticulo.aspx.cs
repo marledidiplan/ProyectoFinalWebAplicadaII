@@ -14,7 +14,6 @@ namespace ProyectoFinalWeb.Consulta
 {
     public partial class cArticulo : System.Web.UI.Page
     {
-        Expression<Func<Articulos, bool>> filtrar = m => true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,6 +50,18 @@ namespace ProyectoFinalWeb.Consulta
                 case 3:
                     filtro = p => p.Descripcion.Contains(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
                     break;
+                case 4:
+                    filtro = p => p.Precio.Equals(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
+                    break;
+                case 5:
+                    filtro = p => p.Costo.Equals(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
+                    break;
+                case 6:
+                    filtro = p=> p.Ganancia.Equals(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
+                    break;
+                case 7: 
+                    filtro = p=> p.Inventario.Equals(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
+                    break;
             }
 
             ArticuloGridView.DataSource = repositorio.GetList(filtro);
@@ -59,7 +70,8 @@ namespace ProyectoFinalWeb.Consulta
 
         public void LLenaReportes()
         {
-           
+
+            Expression<Func<Articulos, bool>> filtrar = m => true;
             ArticuloReportViewer.ProcessingMode = ProcessingMode.Local;
             ArticuloReportViewer.Reset();
             ArticuloReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ListadoArticulo.rdlc");

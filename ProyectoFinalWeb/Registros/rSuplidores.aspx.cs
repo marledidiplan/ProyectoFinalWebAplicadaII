@@ -82,11 +82,13 @@ namespace ProyectoFinalWeb.Registros
             {
                 paso = repo.Guardar(supli);
                 Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
+                Clean();
             }
             else
             {
                 paso = repo.Modificar(supli);
                 Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+                Clean();
             }
 
             if (paso)
