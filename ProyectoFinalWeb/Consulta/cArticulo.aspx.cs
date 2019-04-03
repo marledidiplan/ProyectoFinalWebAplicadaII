@@ -45,22 +45,22 @@ namespace ProyectoFinalWeb.Consulta
                     filtro = c => c.ArticuloId == id;
                     break;
                 case 2:
-                    filtro = c => c.Fecha >= Desde && c.Fecha <= Hasta;
-                    break;
-                case 3:
                     filtro = p => p.Descripcion.Contains(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
                     break;
-                case 4:
+                case 3:
                     filtro = p => p.Precio.Equals(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
                     break;
-                case 5:
+                case 4:
                     filtro = p => p.Costo.Equals(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
                     break;
-                case 6:
+                case 5:
                     filtro = p=> p.Ganancia.Equals(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
                     break;
-                case 7: 
+                case 6: 
                     filtro = p=> p.Inventario.Equals(CriterioTextBox.Text) && p.Fecha >= Desde && p.Fecha <= Hasta;
+                    break;
+                case 7:
+                    filtro = c => c.Fecha >= Desde && c.Fecha <= Hasta;
                     break;
             }
 

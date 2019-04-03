@@ -29,6 +29,7 @@ namespace BLL
 
                     }
                     var balance = contexto.balances.Find(compra.BalanceId);
+                    //var pago = contexto.pagoCompras.Find(compra.SuplidorId);
                     if (compra.Total == compra.General)
                     {
                         balance.Monto -= compra.Total;
@@ -37,11 +38,13 @@ namespace BLL
                     else
                     {
                         contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
+                        //var credito = contexto.sublidors.Find(compra.SuplidorId);
+                        //credito.CuentasPorPagar += compra.Total;
+                        //pago.Deuda += compra.Total;
                         balance.Monto -= compra.BalanceC;
-
                     }
-                    contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
-                    contexto.balances.Find(compra.BalanceId).Monto -= compra.BalanceC;
+                    //contexto.sublidors.Find(compra.SuplidorId).CuentasPorPagar += compra.Total;
+                    //contexto.balances.Find(compra.BalanceId).Monto -= compra.BalanceC;
 
 
                     paso = contexto.SaveChanges() > 0;

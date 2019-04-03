@@ -31,13 +31,13 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// BalanceTextBox control.
+        /// BalanceDropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BalanceTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList BalanceDropDownList1;
         
         /// <summary>
         /// Label1 control.
@@ -173,15 +173,6 @@ namespace ProyectoFinalWeb.Registros {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AgregarButton;
-        
-        /// <summary>
-        /// RemoverButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RemoverButton;
         
         /// <summary>
         /// DetalleGridView control.

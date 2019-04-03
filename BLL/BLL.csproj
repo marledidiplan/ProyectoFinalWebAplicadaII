@@ -53,6 +53,7 @@
     <Compile Include="RepositorioBalance.cs" />
     <Compile Include="RepositorioBase.cs" />
     <Compile Include="RepositorioDetalle.cs" />
+    <Compile Include="RepositorioPago.cs" />
     <Compile Include="RepositorioUsuario.cs" />
   </ItemGroup>
   <ItemGroup>

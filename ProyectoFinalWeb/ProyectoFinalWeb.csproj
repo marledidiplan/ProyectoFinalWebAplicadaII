@@ -108,11 +108,13 @@
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Registros\rArticulos.aspx" />
+    <Content Include="Registros\rBalance.aspx" />
     <Content Include="Registros\rCompra.aspx" />
     <Content Include="Registros\rPagoCompra.aspx" />
     <Content Include="Registros\rSuplidores.aspx" />
     <Content Include="Registros\rUsuarios.aspx" />
     <Content Include="Resources\caja.png" />
+    <Content Include="Resources\cash_icon.png" />
     <Content Include="Resources\compra.png" />
     <Content Include="Resources\icono-carrito.png" />
     <Content Include="Resources\icono-productos.jpg" />
@@ -295,6 +297,13 @@
     </Compile>
     <Compile Include="Registros\rArticulos.aspx.designer.cs">
       <DependentUpon>rArticulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registros\rBalance.aspx.cs">
+      <DependentUpon>rBalance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registros\rBalance.aspx.designer.cs">
+      <DependentUpon>rBalance.aspx</DependentUpon>
     </Compile>
     <Compile Include="Registros\rCompra.aspx.cs">
       <DependentUpon>rCompra.aspx</DependentUpon>

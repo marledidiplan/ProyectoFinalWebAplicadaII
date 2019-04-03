@@ -4,6 +4,7 @@ using ProyectoFinalWeb.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -33,6 +34,29 @@ namespace ProyectoFinalWeb.Registros
             return usuario;
         }
 
+        protected bool Valida(Usuarios usuario)
+        {
+
+            bool validar = false;
+            Expression<Func<Usuarios, bool>> filtar = m => true;
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            var ValiNombre = repositorio.GetList(d => true);
+            foreach (var item in ValiNombre)
+            {
+                if (usuario.NombreUsuario == item.NombreUsuario)
+                {
+                    Util.ShowToastr(this.Page, "El usuario ya existe", "Error", "error");
+                    return validar = true;
+                }
+
+            }
+            if (Util.ToInt(UsuarioIdTextbox.Text) > 0)
+            {
+                Util.ShowToastr(this.Page, "Debe estar en 0", "Error", "error");
+                return validar = true;
+            }
+            return validar;
+        }
         public void Clean()
         {
             UsuarioIdTextbox.Text = "0";
@@ -61,24 +85,34 @@ namespace ProyectoFinalWeb.Registros
             }
 
             usu = LlenaClase();
-            if (Util.ToInt(UsuarioIdTextbox.Text) == 0)
+            if (Valida(usu))
             {
-                paso = repo.Guardar(usu);
-                Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
+                return;
             }
             else
             {
-                paso = repo.Modificar(usu);
-                Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
-            }
 
-            if (paso)
-            {
-                Clean();
-            }
-            else
-            {
-                Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
+                if (Util.ToInt(UsuarioIdTextbox.Text) == 0)
+                {
+                    paso = repo.Guardar(usu);
+                    Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
+                    Clean();
+                }
+                else
+                {
+                    paso = repo.Modificar(usu);
+                    Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+                    Clean();
+                }
+
+                if (paso)
+                {
+                    Clean();
+                }
+                else
+                {
+                    Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
+                }
             }
         }
 

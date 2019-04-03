@@ -16,6 +16,15 @@ namespace ProyectoFinalWeb.Registros
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!Page.IsPostBack)
+            {
+
+                LlenaComboBox();
+                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+            }
+
+
         }
         public PagoCompra LlenaClase()
         {
@@ -25,34 +34,42 @@ namespace ProyectoFinalWeb.Registros
             bool resul = DateTime.TryParse(FechaTextBox.Text, out date);
             if (resul == true)
                 pago.Fecha = date;
-            pago.SuplidorId = Util.ToInt(SuplidorDropDownList.SelectedValue);
+            pago.SuplidorId = Util.ToInt(SuplidorDropDownList.Text);
             pago.MontoPagar = Util.ToInt(PagoTextBox.Text);
-            pago.Deuda = Util.ToInt(DeudaTextBox.Text);
+            pago.Deuda = Util.ToInt(DeudaDropDownList.Text);
 
             return pago;
         }
         private void LlenaCampos(PagoCompra pagoCompra)
         {
             PagoTextBox.Text = pagoCompra.MontoPagar.ToString();
-            DeudaTextBox.Text = pagoCompra.Deuda.ToString();
+            DeudaDropDownList.Text = pagoCompra.Deuda.ToString();
             SuplidorDropDownList.SelectedValue = pagoCompra.SuplidorId.ToString();
 
 
         }
         private void LlenaComboBox()
         {
+          
             RepositorioBase<Suplidores> sRepositorio = new RepositorioBase<Suplidores>();
             SuplidorDropDownList.DataSource = sRepositorio.GetList(u => true);
             SuplidorDropDownList.DataValueField = "SuplidorId";
             SuplidorDropDownList.DataTextField = "Nombre";
+            SuplidorDropDownList.DataBind();
 
+            RepositorioBase<PagoCompra> Repositorio = new RepositorioBase<PagoCompra>();
+            DeudaDropDownList.DataSource = Repositorio.GetList(u => true);
+            DeudaDropDownList.DataValueField = "PagoCompraId";
+            DeudaDropDownList.DataTextField = "Deuda";
+            DeudaDropDownList.DataBind();
 
+            //CargarDeuda(Util.ToInt(DeudaTextBox.Text));
         }
         private void Clean()
         {
             PagoIdTextBox.Text = "0";
             PagoTextBox.Text = "";
-            DeudaTextBox.Text = "0";
+            DeudaDropDownList.Text = "0";
 
         }
 
@@ -76,17 +93,10 @@ namespace ProyectoFinalWeb.Registros
             return Deuda;
         }
 
-        protected void SuplidorDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = Util.ToInt(SuplidorDropDownList.SelectedValue);
-            int deudas = CargarDeuda(id);
-            DeudaTextBox.Text = deudas.ToString();
-
-        }
 
         protected void BuscarButton_Click(object sender, EventArgs e)
         {
-            RepositorioBase<PagoCompra> repo = new RepositorioBase<PagoCompra>();
+            RepositorioPago repo = new RepositorioPago();
             PagoCompra pago = new PagoCompra();
             pago = repo.Buscar(Util.ToInt(PagoIdTextBox.Text));
 
@@ -112,7 +122,7 @@ namespace ProyectoFinalWeb.Registros
         {
             bool paso = false;
             PagoCompra pago = new PagoCompra();
-            RepositorioBase<PagoCompra> repo = new RepositorioBase<PagoCompra>();
+            RepositorioPago repo = new RepositorioPago();
 
             if (IsValid == false)
             {
@@ -146,7 +156,7 @@ namespace ProyectoFinalWeb.Registros
         protected void EliminarBtton_Click(object sender, EventArgs e)
         {
             int id = Util.ToInt(PagoIdTextBox.Text);
-            RepositorioBase<PagoCompra> repo = new RepositorioBase<PagoCompra>();
+            RepositorioPago repo = new RepositorioPago();
 
             if (repo.Eliminar(id))
             {

@@ -45,6 +45,7 @@
                         <div class="form-gruop col-md-12">
                             <label for="Cedula" class="col-md-3 control-label input-sm">Cedula:</label>
                             <div class="col-md-8">
+           
                                 <asp:TextBox ID="CedulaTextBox" runat="server" placeholder="###-#######-#" class="form-control input-sm"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="CedulaRFValidator" ValidationGroup="Guardar" ControlToValidate="CedulaTextBox" runat="server" ErrorMessage="*" Display="Dynamic" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="CedulaREValidator" runat="server" ForeColor="DarkRed" ErrorMessage="Por favor solo numeros" ValidationExpression="(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)" ValidationGroup="Guardar" ControlToValidate="CedulaTextBox"></asp:RegularExpressionValidator>
@@ -96,7 +97,7 @@
                                 <div class="form-group">
                                     <asp:Button ID="NuevoBtton" runat="server" Text="Nuevo" class="btn btn-dark btn" OnClick="NuevoBtton_Click" />
                                     <asp:Button ID="GuardarBtton" ValidationGroup="Guardar" runat="server" Text="Guardar" class="btn btn-success btn" OnClick="GuardarBtton_Click" />
-                                    <asp:Button ID="EliminarBtton" ValidationGroup="Eliminar" runat="server" Text="Eliminar" class="btn btn-danger btn" OnClick="EliminarBtton_Click" />
+                                    <asp:Button ID="EliminarBtton" ValidationGroup="Buscar" runat="server" Text="Eliminar" class="btn btn-danger btn" OnClick="EliminarBtton_Click" />
                                 </div>
                             </div>
                         </div>

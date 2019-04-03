@@ -4,6 +4,7 @@ using ProyectoFinalWeb.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -65,7 +66,28 @@ namespace ProyectoFinalWeb.Registros
             CuentaTextbox.Text = suplidor.CuentasPorPagar.ToString();
 
         }
+        protected bool Valida(Suplidores suplidor)
+        {
 
+            bool validar = false;
+            Expression<Func<Suplidores, bool>> filtrar = m => true;
+            RepositorioBase<Suplidores> repositorio = new RepositorioBase<Suplidores>();
+            var Valicedula = repositorio.GetList(d => true);
+            foreach (var item in Valicedula)
+            {
+                if (suplidor.Cedula == item.Cedula)
+                {
+                    Util.ShowToastr(this.Page, "Datos existente", "Error", "Error");
+                    return validar = true;
+                }
+            }
+            if(Util.ToInt(SuplidorIdTextBox.Text) > 0)
+            {
+                Util.ShowToastr(this.Page, "Debe estar en 0", "Error", "Error");
+                return validar = true;
+            }
+            return validar;
+        }
         protected void GuardarBtton_Click(object sender, EventArgs e)
         {
             bool paso = false;
@@ -78,26 +100,33 @@ namespace ProyectoFinalWeb.Registros
             }
 
             supli = LlenaClase();
-            if (Util.ToInt(SuplidorIdTextBox.Text) == 0)
+            if (Valida(supli))
             {
-                paso = repo.Guardar(supli);
-                Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
-                Clean();
+                return;
             }
             else
             {
-                paso = repo.Modificar(supli);
-                Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
-                Clean();
-            }
+                if (Util.ToInt(SuplidorIdTextBox.Text) == 0)
+                {
+                    paso = repo.Guardar(supli);
+                    Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
+                    Clean();
+                }
+                else
+                {
+                    paso = repo.Modificar(supli);
+                    Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+                    Clean();
+                }
 
-            if (paso)
-            {
-                Clean();
-            }
-            else
-            {
-                Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
+                if (paso)
+                {
+                    Clean();
+                }
+                else
+                {
+                    Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
+                }
             }
         
         }

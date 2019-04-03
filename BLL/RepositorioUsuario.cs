@@ -22,8 +22,5 @@ namespace BLL
       
             return paso;
         }
-
-
-
     }
 }

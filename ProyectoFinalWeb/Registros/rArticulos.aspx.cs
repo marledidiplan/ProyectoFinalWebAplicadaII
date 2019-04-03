@@ -4,6 +4,7 @@ using ProyectoFinalWeb.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -20,6 +21,31 @@ namespace ProyectoFinalWeb.Registros
             }
         }
 
+
+        protected bool Valida(Articulos arti)
+        {
+
+            bool validar = false;
+            Expression<Func<Articulos, bool>> filtar = m => true;
+            RepositorioBase<Articulos> repositorio = new RepositorioBase<Articulos>();
+            var ValiNombre = repositorio.GetList(d => true);
+            foreach (var item in ValiNombre)
+            {
+                if (arti.Descripcion == item.Descripcion)
+                {
+                    Util.ShowToastr(this.Page, "El articulo ya existe", "Error", "error");
+                    return validar = true;
+                }
+                
+            }
+            if(Util.ToInt(ArticuloIdTextBox.Text) > 0)
+            {
+                Util.ShowToastr(this.Page, "Debe estar en 0", "Error", "error");
+                return validar = true;
+            }
+            return validar;
+        }
+
         protected void GuardarBotton_Click(object sender, EventArgs e)
         {
             bool paso = false;
@@ -32,27 +58,35 @@ namespace ProyectoFinalWeb.Registros
             }
 
             arti = LlenaClase();
-            if (Util.ToInt(ArticuloIdTextBox.Text) == 0)
+            if(Valida(arti))
             {
-                paso = repo.Guardar(arti);
-                Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
-                Clean();
+                return;
             }
             else
             {
-                paso = repo.Modificar(arti);
-                Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
-                Clean();
-            }
+                if (Util.ToInt(ArticuloIdTextBox.Text) == 0)
+                {
+                    paso = repo.Guardar(arti);
+                    Util.ShowToastr(this.Page, "Guardado con EXITO", "Guardado", "Success");
+                    Clean();
+                }
+                else
+                {
+                    paso = repo.Modificar(arti);
+                    Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+                    Clean();
+                }
 
-            if (paso)
-            {
-                Clean();
+                if (paso)
+                {
+                    Clean();
+                }
+                else
+                {
+                    Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
+                }
             }
-            else
-            {
-                Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
-            }
+           
 
         }
         public Articulos LlenaClase()
@@ -76,6 +110,7 @@ namespace ProyectoFinalWeb.Registros
             CostoTextBox.Text = "";
             PrecioTextBox.Text = "";
             GananciaTextBox.Text = "";
+            InventarioTextBox.Text = "0";
         }
         private int CalcularGanancia(int costo, int precio)
         {

@@ -90,9 +90,6 @@ namespace BLL
             }
             return Lista;
         }
-
-
-
         public virtual bool Modificar(T entity)
         {
             bool paso = false;

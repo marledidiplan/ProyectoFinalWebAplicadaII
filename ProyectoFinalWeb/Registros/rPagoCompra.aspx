@@ -36,7 +36,7 @@
                         <div class="form-group colm-md-12">
                             <label for="Suplidor" class="col-md-3 input-sm">Suplidor</label>
                             <div class="col-md-8">
-                                <asp:DropDownList ID="SuplidorDropDownList" runat="server" Width="250" OnSelectedIndexChanged="SuplidorDropDownList_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="SuplidorDropDownList" runat="server" Width="250"></asp:DropDownList>
                                 <br />
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         <div class="form-gruop col-md-12">
                             <asp:Label ID="Deuda" runat="server" Text="Deuda"></asp:Label>
                             <div class="col-md-8">
-                                <asp:TextBox ID="DeudaTextBox" runat="server" class="form-control input-md" ReadOnly="True"></asp:TextBox>
+                               <asp:DropDownList ID="DeudaDropDownList" runat="server" Width="250" ></asp:DropDownList> 
                             </div>
                         </div>
                         <%--Pago--%>

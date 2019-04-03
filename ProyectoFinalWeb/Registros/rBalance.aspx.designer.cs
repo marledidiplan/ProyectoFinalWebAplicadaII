@@ -10,7 +10,7 @@
 namespace ProyectoFinalWeb.Registros {
     
     
-    public partial class rPagoCompra {
+    public partial class rBalance {
         
         /// <summary>
         /// Imagen control.
@@ -31,13 +31,13 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// PagoIdTextBox control.
+        /// BalanceIdTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PagoIdTextBox;
+        protected global::System.Web.UI.WebControls.TextBox BalanceIdTextBox;
         
         /// <summary>
         /// BuscarButton control.
@@ -58,15 +58,6 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator IdRFdValidator;
         
         /// <summary>
-        /// IdREValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator IdREValidator;
-        
-        /// <summary>
         /// FechaTextBox control.
         /// </summary>
         /// <remarks>
@@ -76,58 +67,31 @@ namespace ProyectoFinalWeb.Registros {
         protected global::System.Web.UI.WebControls.TextBox FechaTextBox;
         
         /// <summary>
-        /// SuplidorDropDownList control.
+        /// MontoBalanceTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SuplidorDropDownList;
+        protected global::System.Web.UI.WebControls.TextBox MontoBalanceTextBox;
         
         /// <summary>
-        /// Deuda control.
+        /// MontoRFValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Deuda;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MontoRFValidator;
         
         /// <summary>
-        /// DeudaDropDownList control.
+        /// MontoREValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DeudaDropDownList;
-        
-        /// <summary>
-        /// PagoTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PagoTextBox;
-        
-        /// <summary>
-        /// PagoRFValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator PagoRFValidator;
-        
-        /// <summary>
-        /// PagoREValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator PagoREValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MontoREValidator;
         
         /// <summary>
         /// NuevoBtton control.

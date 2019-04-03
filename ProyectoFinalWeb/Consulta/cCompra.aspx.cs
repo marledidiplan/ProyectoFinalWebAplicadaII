@@ -38,7 +38,6 @@ namespace ProyectoFinalWeb.Consulta
             switch (FiltroDropDownList.SelectedIndex)
             {
                 case 0:
-
                     repositorio.GetList(c => true);
                     break;
                 case 1:
@@ -49,6 +48,15 @@ namespace ProyectoFinalWeb.Consulta
                     filtro = c => c.Fecha >= Desde && c.Fecha <= Hasta;
                     break;
                
+                case 3:
+                    filtro = c => c.Total.Equals(CriterioTextBox.Text) && c.Fecha >= Desde && c.Fecha <= Hasta;
+                    break;
+                case 4:
+                   filtro = c => c.SubTotal.Equals(CriterioTextBox.Text) && c.Fecha >= Desde && c.Fecha <=Hasta;
+                    break;
+                case 5:
+                    filtro = c => c.Itbis.Equals(CriterioTextBox.Text) && c.Fecha >= Desde && c.Fecha <= Hasta;
+                    break;
             }
 
             CompraGridView.DataSource = repositorio.GetList(filtro);

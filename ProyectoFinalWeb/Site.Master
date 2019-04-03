@@ -73,6 +73,7 @@
                             <a class="dropdown-item" href="/Registros/rUsuarios.aspx">Usuarios</a>
                             <a class="dropdown-item" href="/Registros/rSuplidores.aspx">Suplidores</a>
                             <a class="dropdown-item" href="/Registros/rCompra.aspx">Compra</a>
+                             <a class="dropdown-item" href="/Registros/rBalance.aspx">Balance</a>
 
                         </div>
                     </li>

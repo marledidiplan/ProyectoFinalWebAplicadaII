@@ -15,12 +15,6 @@ namespace ProyectoFinalWeb.Registros
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //RepositorioBalance repo = new RepositorioBalance();
-            //int id = 1;
-            //foreach (var item in RepositorioBalance.GetList(f => f.BalanceId == id))
-            //{
-            //    BalanceTextBox.Text = item.Monto.ToString();
-            //}
 
             if (!Page.IsPostBack)
             {
@@ -29,7 +23,7 @@ namespace ProyectoFinalWeb.Registros
                 FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
             }
-            
+
         }
 
         protected void NuevoBtton_Click(object sender, EventArgs e)
@@ -49,7 +43,7 @@ namespace ProyectoFinalWeb.Registros
             compra.Total = Util.ToInt(TotalTextBox.Text.ToString());
             compra.SubTotal = Convert.ToInt32(SubTotalTextBox.Text.ToString());
             compra.Itbis = Convert.ToDecimal(ItbisTextBox.Text.ToString());
-            compra.SuplidorId = Util.ToIntObject(SuplidorsDropDownList.SelectedValue);
+            compra.SuplidorId = Util.ToInt(SuplidorsDropDownList.Text);
             compra.UsuarioId = Convert.ToInt32(UsuarioDropDownList.SelectedValue);
             compra.Efectivo = Util.ToInt(EfectivoTextBox.Text);
             compra.Devuelta = Util.ToInt(DevueltaTextbox.Text);
@@ -69,6 +63,8 @@ namespace ProyectoFinalWeb.Registros
             CantidadTextBox.Text = string.Empty;
             PrecioTextBox.Text = string.Empty;
             ImporteTextBox.Text = string.Empty;
+            EfectivoTextBox.Text = "0";
+            DevueltaTextbox.Text = "0";
             ViewState["CompraDetalle"] = new CompraDetalle();
             DetalleGridView.DataSource = null;
             DetalleGridView.DataBind();
@@ -98,8 +94,15 @@ namespace ProyectoFinalWeb.Registros
             ArticuloDropDownList.DataTextField = "Descripcion";
             ArticuloDropDownList.DataBind();
 
+            RepositorioBase<Balance> repoBalance = new RepositorioBase<Balance>();
+            BalanceDropDownList1.DataSource = repoBalance.GetList(m => true);
+            BalanceDropDownList1.DataValueField = "BalanceId";
+            BalanceDropDownList1.DataValueField = "Monto";
+            BalanceDropDownList1.DataBind();
 
-
+            TipoDropDownList.Items.Clear();
+            TipoDropDownList.Items.Add("Contado");
+            TipoDropDownList.Items.Add("Credito");
         }
 
         protected void LlenarCampos(Compra compra)
@@ -113,7 +116,7 @@ namespace ProyectoFinalWeb.Registros
             ItbisTextBox.Text = compra.Itbis.ToString();
             EfectivoTextBox.Text = compra.Efectivo.ToString();
             DevueltaTextbox.Text = compra.Devuelta.ToString();
-            
+
 
             ViewState["CompraDetalle"] = compra.Detalles;
             DetalleGridView.DataSource = (List<CompraDetalle>)ViewState["CompraDetalle"];
@@ -137,49 +140,54 @@ namespace ProyectoFinalWeb.Registros
 
         protected void GuardarBtton_Click(object sender, EventArgs e)
         {
-
-            bool paso = false;
-            Compra compra = new Compra();
-            Balance balance = new Balance();
-            PagoCompra pago = new PagoCompra();
-            RepositorioDetalle repo = new RepositorioDetalle();
-            //RepositorioBase<Compra> repositorio = new RepositorioBase<Compra>();
-            if (IsValid == false)
+            if (DetalleGridView.Rows.Count > 0 && TotalTextBox.Text != "")
             {
-                Util.ShowToastr(this.Page, " Campos Vacios", "Error", "Error");
-            }
-            if (TipoDropDownList.SelectedIndex == 0)
-            {
-                balance.Monto -= compra.Total;
 
+
+                bool paso = false;
+                Compra compra = new Compra();
+                Balance balance = new Balance();
+                PagoCompra pago = new PagoCompra();
+                RepositorioDetalle repo = new RepositorioDetalle();
+                //RepositorioBase<Compra> repositorio = new RepositorioBase<Compra>();
+                if (IsValid == false)
+                {
+                    Util.ShowToastr(this.Page, " Campos Vacios", "Error", "Error");
+                }
+                if (TipoDropDownList.SelectedIndex == 0)
+                {
+                    balance.Monto -= compra.Total;
+
+                }
+                else
+                {
+                    pago.Deuda += compra.Total;
+                }
+
+                compra = LlenaClase(compra);
+                if (compra.CompraId == 0)
+                {
+                    paso = repo.Guardar(compra);
+
+                    Util.ShowToastr(this.Page, " Guardado con EXITO", "Guardado", "Success");
+                    Clean();
+                }
+                else
+                {
+                    paso = repo.Modificar(compra);
+                    Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
+                }
+                if (paso)
+                {
+                    Clean();
+                }
+                else
+                {
+                    Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
+                }
             }
             else
-            {
-                pago.Deuda += compra.Total;
-            }
-
-            compra = LlenaClase(compra);
-            if (compra.CompraId == 0)
-            {
-                paso = repo.Guardar(compra);
-               
-                Util.ShowToastr(this.Page, " Guardado con EXITO", "Guardado", "Success");
-                Clean();
-            }
-            else
-            {
-                paso = repo.Modificar(compra);
-                Util.ShowToastr(this.Page, "Modificado con EXITO", "Guardado", "Success");
-            }
-            if (paso)
-            {
-                Clean();
-            }
-            else
-            {
-                Util.ShowToastr(this.Page, "No se pudo Guardar", "Error", "Error");
-            }
-
+                Util.ShowToastr(this.Page, "Compra Vacia!, Agregar al menos un item", "Error", "Error");
 
 
         }
@@ -191,7 +199,7 @@ namespace ProyectoFinalWeb.Registros
 
             if (cmp != null)
             {
-               
+
                 LlenarCampos(cmp);
                 LlenaCombo();
                 Util.ShowToastr(this.Page, "Su busqueda fue exitosa", "EXITO", "Info");
@@ -215,38 +223,15 @@ namespace ProyectoFinalWeb.Registros
                 PrecioTextBox.Text = item.Precio.ToString();
             }
         }
-        private void EvaluarDevuelta()
-        {
-
-            int efectivo;
-            int total;
-            //bool resul = int.TryParse(TotaltextBox.Text, out t);
-            //if (!resul)
-            //    return;
-
-
-            //int ef;
-            //bool result = int.TryParse(EfectivonumericUpDown.Value.ToString(), out ef);
-            //if (!resul)
-            //    return;
-
-            efectivo = Util.ToInt(TotalTextBox.Text);
-            total = Util.ToInt(EfectivoTextBox.Text);
-
-
-            DevueltaTextbox.Text = CalcularDevuelta(efectivo, total).ToString();
-
-        }
-
 
         private int CalcularImporte(int cantidad, int precio)
         {
             return cantidad * precio;
         }
 
-        private int CalcularDevuelta(int efectivo, int total)
+        private int CalcularDevuelta(int total, int efectivo)
         {
-            return efectivo - total;
+            return total - efectivo;
         }
         private void EvaluarImporte()
         {
@@ -321,7 +306,7 @@ namespace ProyectoFinalWeb.Registros
                 DetalleGridView.DataBind();
             }
         }
-    
+
 
 
         //protected void PrecioTextBox_TextChanged(object sender, EventArgs e)
@@ -333,6 +318,60 @@ namespace ProyectoFinalWeb.Registros
         {
             EvaluarPrecio();
             EvaluarImporte();
+        }
+
+        protected void EfectivoTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int efectivo;
+            int total;
+
+            efectivo = Util.ToInt(TotalTextBox.Text);
+            total = Util.ToInt(EfectivoTextBox.Text);
+
+
+            DevueltaTextbox.Text = CalcularDevuelta(total, efectivo).ToString();
+        }
+
+        protected void PrecioTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void DetalleGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if(e.CommandName == "Select")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                Expression<Func<Articulos, bool>> filtro = p => true;
+                RepositorioBase<Articulos> repositorio = new RepositorioBase<Articulos>();
+                var lista = repositorio.GetList(c => true);
+                var productos = repositorio.Buscar(lista[index].ArticuloId);
+                decimal Total= 0;
+                decimal Total2 = Convert.ToInt32(TotalTextBox.Text);
+                decimal ite = 0;
+                decimal sub = 0;
+                foreach (var item in lista)
+                {
+                    Total = item.Precio * Convert.ToInt32(CantidadTextBox.Text);
+                }
+                Total2 = Total2 - Total;
+                ite = Total2 * 18 / 100;
+                sub = Total2 - ite;
+                TotalTextBox.Text = Total2.ToString();
+                SubTotalTextBox.Text = sub.ToString();
+                ItbisTextBox.Text = ite.ToString();
+                ((List<CompraDetalle>)ViewState["CompraDetalle"]).RemoveAt(index);
+                DetalleGridView.DataSource = ViewState["CompraDetalle"];
+                DetalleGridView.DataBind();
+
+            }
+        }
+
+        protected void DetalleGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            DetalleGridView.DataSource = ViewState["CompraDetalle"];
+            DetalleGridView.PageIndex = e.NewPageIndex;
+            DetalleGridView.DataBind();
         }
     }
 }
